@@ -2,8 +2,14 @@ import "./Register.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+// importing bootstrap from node_modules
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Register() {
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -16,31 +22,43 @@ function Register() {
       // user from register
       console.log(user);
 
-      let res = await axios.post("http://localhost:5000/users", user);
+      let res = await axios.post("http://localhost:5000/user/register", user);
       console.log("res in register: ", res);
 
       // make post requuest here
-      if (res.status === 201) {
+      if (res.data.Message === "User Registered") {
         console.log("User created!");
+        setMessage("Registered!");
+      } else if (res.data.Message === "User already exists!") {
+        console.log(res.data.Message);
+        setMessage(res.data.Message);
+      } else if (res.data.Message === "Not an employee!") {
+        console.log(res.data.Message);
+        setMessage(res.data.Message);
       }
     } catch (error) {
       console.log("error: ", error);
+      console.log("Internal error: ", error.ua.response.data.Message);
     }
   };
-  const navigate = useNavigate();
+
   const navigateToLogin = () => {
     navigate("/login");
   };
   return (
-    <div>
+    <div className="container">
+      <h2>{message}</h2>
+      <h2>Register User</h2>
       <form
-        className="p-3 bg-dark text-white rounded"
+        className="p-3 text-dark bg-light "
         onSubmit={handleSubmit(onSubmit)}
       >
         {/* register your input into the hook by invoking the "register" function */}
 
         <div className="col">
-          <label htmlFor="username">Employee/User ID</label>
+          <label className="text-left" htmlFor="username">
+            User ID
+          </label>
           <input
             className="form-control"
             {...register("userId", {

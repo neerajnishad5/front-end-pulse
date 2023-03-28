@@ -12,17 +12,17 @@ export default function ForgotPassword() {
   } = useForm();
 
   // on user submit details
-  const onSubmit = async (user) => {
+  const onSubmit = async (email) => {
     try {
-      // user from register
-      console.log(user);
+      // email from password to send otp
+      console.log(email);
 
-      let res = await axios.post("http://localhost:5000/posts");
-      console.log("res in Login: ", res);
+      let res = await axios.post("http://localhost:5000/user/forgot-password");
+      console.log("res in forgot pas: ", res);
 
       // make post requuest here
       if (res.status === 201) {
-        console.log("User created!");
+        console.log("Email sent!");
       }
     } catch (error) {
       console.log("error: ", error);

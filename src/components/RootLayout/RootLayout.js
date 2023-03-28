@@ -11,8 +11,8 @@ export default function RootLayout() {
     <div>
       <Header />
       <div
-        className="container outlet mt-5  rounded"
-        style={{ minHeight: "60vh" }}
+        className="    mt-5  rounded"
+        style={{ minHeight: "80vh",  }}
       >
         <Outlet />
         <Footer />

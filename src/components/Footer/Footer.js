@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Footer() {
   return (
-    <div className="border bg-dark text-white footer p-3 mt-5 rounded text-center   row">
+    <div className="border text-dark footer p-3 mt-5 text-center   row">
       <div className="col-sm">
         <h5 className="mb-3">Quick links</h5>
         <ul className="list-unstyled text-muted">

@@ -2,9 +2,13 @@ import "./Login.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 // Login function
 export default function Login() {
+  const navigate = useNavigate();
+  // for user role not defined
+  const [message, setMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -17,19 +21,27 @@ export default function Login() {
       // user from register
       console.log(user);
 
-      let res = await axios.post("http://localhost:5000/users", user);
+      let res = await axios.post("http://localhost:5000/user/login", user);
       console.log("res in Login: ", res);
 
-      // make post requuest here
-      if (res.status === 201) {
-        console.log("User created!");
+      // getting token from payload
+      const token = res.data.token;
+
+      // setting token to session storage
+      sessionStorage.setItem("token", token);
+
+      if (res.data.Message === "Login successful!") {
+        if (res.data.userRole === "gdo") navigate("/gdo");
+        else if (res.data.userRole === "superAdmin") navigate("/super-admin");
+        else if (res.data.userRole === "projectManager")
+          navigate("/project-manager");
+        else if (res.data.userRole === "specialUser") navigate("/special-user");
+       
       }
     } catch (error) {
       console.log("error: ", error);
     }
   };
-
-  const navigate = useNavigate();
 
   const navigateToForgotPassword = () => {
     navigate("/forgot-password");
@@ -37,7 +49,12 @@ export default function Login() {
 
   return (
     <div>
-      <form className="p-3 bg-dark text-white ">
+      <h2 className="text-danger">{message}</h2>
+      <h2>Login</h2>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="p-3 text-dark form-group"
+      >
         {/* register your input into the hook by invoking the "register" function */}
 
         <div className="col">
@@ -74,7 +91,6 @@ export default function Login() {
             <button
               className="btn btn-success d-block mx-auto btn-md mt-3"
               type="submit"
-              onSubmit={handleSubmit(onSubmit)}
             >
               Login
             </button>
