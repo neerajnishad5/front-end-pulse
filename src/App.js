@@ -16,8 +16,12 @@ import SuperAdminHome from "./components/SuperAdminHome/SuperAdminHome";
 import SpecialUser from "./components/SpecialUserHome/SpecialUserHome";
 import ProjectManager from "./components/ProjectManagerHome/ProjectManagerHome";
 import GdoHome from "./components/GdoHome/GdoHome";
-
-// import { useSelector } from "react-redux";
+import ProjectsList from "./components/ProjectsList/ProjectsList";
+import ResetPassword from "./components/ResetPassword/ResetPassword";
+import ProjectDetails from "./components/ProjectDetails/ProjectDetails";
+import RaiseProjectConcern from "./components/ProjectManagerHome/RaiseProjectConcern";
+import RaiseProjectUpdate from "./components/ProjectManagerHome/RaiseProjectUpdate";
+import UpdateProject from "./components/GdoHome/UpdateProject";
 
 export default function App() {
   const browserRouterObj = createBrowserRouter([
@@ -43,21 +47,49 @@ export default function App() {
           element: <ForgotPassword />,
         },
         {
-          path: "super-admin",
+          path: "superAdmin/:email",
           element: <SuperAdminHome />,
         },
 
         {
-          path: "special-user",
+          path: "specialUser/:email",
           element: <SpecialUser />,
+          children: [{ path: "projects", element: <ProjectsList /> }],
         },
         {
-          path: "project-manager",
+          path: "projectManager/:email",
           element: <ProjectManager />,
+          children: [
+            {
+              path: "raise-project-concern",
+              element: <RaiseProjectConcern />,
+            },
+            {
+              path: "raise-project-update",
+              element: <RaiseProjectUpdate />,
+            },
+          ],
         },
         {
-          path: "gdo",
+          path: "gdo/:email/",
           element: <GdoHome />,
+        },
+        {
+          path: "projects",
+          element: <ProjectsList />,
+        },
+
+        {
+          path: "reset-password",
+          element: <ResetPassword />,
+        },
+        {
+          path: "project-details/:id",
+          element: <ProjectDetails />,
+        },
+        {
+          path: "update-project/:id",
+          element: <UpdateProject />,
         },
       ],
     },

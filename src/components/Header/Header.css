@@ -1,0 +1,20 @@
+.nav a:hover {
+  background-color: #4d5053;
+  border-radius: 3px;
+  color: white;
+}
+
+/* a.active is anchor tag a & active : class added to it */
+.nav a.active {
+  background-color: #252627;
+  color: white;
+  border-radius: 3px;
+}
+
+a.inactive {
+  color: white;
+}
+
+.header-area {
+  background-color: #0E402D;
+}

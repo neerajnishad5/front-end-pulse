@@ -1,19 +1,25 @@
 // importing bootstrap from node_modules
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./Footer.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
+  const navigate = useNavigate();
   return (
-    <div className="border text-dark footer p-3 mt-5 text-center   row">
+    <div className="border back-footer text-white footer pt-3 mt-4 text-center row">
       <div className="col-sm">
         <h5 className="mb-3">Quick links</h5>
-        <ul className="list-unstyled text-muted">
-          <li>
+        <ul className="list-unstyled  ">
+          <li onClick={() => navigate("/")}>
             <a className="text-reset" href="#">
               Home
             </a>
           </li>
           <li>
-            <a className="text-reset" href="#">
+            <a
+              className="text-reset pointer"
+              href="https://www.westagilelabs.com/about/"
+            >
               About
             </a>
           </li>
@@ -32,7 +38,7 @@ export default function Footer() {
 
       <div className="col-sm">
         <h5 className="mb-3">Company</h5>
-        <ul className="list-unstyled text-muted">
+        <ul className="list-unstyled  ">
           <li>
             <a className="text-reset" href="#">
               Our services
@@ -58,7 +64,7 @@ export default function Footer() {
 
       <div className="col-sm">
         <h5 className="mb-3">Resources</h5>
-        <ul className="list-unstyled text-muted">
+        <ul className="list-unstyled  ">
           <li>
             <a className="text-reset" href="#">
               Blog
@@ -79,7 +85,7 @@ export default function Footer() {
 
       <div className="col-sm">
         <h5 className="mb-3">Newsletter</h5>
-        <p className="small text-start text-muted">
+        <p className="small text-start  ">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet soluta
           commodi dolorem ipsa reprehenderit dicta, et molestiae ducimus animi

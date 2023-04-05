@@ -3,12 +3,15 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 // importing bootstrap from node_modules
 import "bootstrap/dist/css/bootstrap.min.css";
+import image from "../images/register.svg";
 
-function Register() {
+export default function Register() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  // const [isHome, setIsHome] = useState(false);
 
   const {
     register,
@@ -20,7 +23,7 @@ function Register() {
   const onSubmit = async (user) => {
     try {
       // user from register
-      console.log(user);
+      console.log("user from registereere: ", user);
 
       let res = await axios.post("http://localhost:5000/user/register", user);
       console.log("res in register: ", res);
@@ -46,103 +49,123 @@ function Register() {
     navigate("/login");
   };
   return (
-    <div className="container">
-      <h2>{message}</h2>
-      <h2>Register User</h2>
-      <form
-        className="p-3 text-dark bg-light "
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        {/* register your input into the hook by invoking the "register" function */}
-
-        <div className="col">
-          <label className="text-left" htmlFor="username">
-            User ID
-          </label>
-          <input
-            className="form-control"
-            {...register("userId", {
-              required: true,
-            })}
-          />
-          {/* errors will return when field validation fails  */}
-          {errors.userId && (
-            <span className="text-danger">User ID is required</span>
-          )}
-        </div>
-
-        {/* Name field */}
-        <div className="col">
-          <label htmlFor="username">Name</label>
-          <input
-            className="form-control"
-            {...register("username", {
-              required: true,
-            })}
-          />
-          {/* errors will return when field validation fails  */}
-          {errors.username && (
-            <span className="text-danger">Username is required</span>
-          )}
-        </div>
-
-        {/* email */}
-        <div className="col   ">
-          <label htmlFor="email">Email</label>
-          <input
-            className="form-control"
-            {...register("email", {
-              required: true,
-              // pattern: {
-              //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              //   message: "Invalid email address!",
-              // },
-            })}
-          />
-
-          {/* errors will return when field validation fails  */}
-          {errors.email && (
-            <span className="text-danger">Email is required</span>
-          )}
-        </div>
-
-        {/* password */}
-        <div className="  col  ">
-          <label htmlFor="dob">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            {...register("password", { required: true })}
-          />
-
-          {/* errors will return when field validation fails  */}
-          {errors.password && (
-            <span className="text-danger">Password is required</span>
-          )}
-        </div>
-
-        <div className="row">
-          <div className="col">
-            <button
-              className="btn btn-success d-block mx-auto btn-md mt-3"
-              type="submit"
+    <div className="row d-flex background-this">
+      <div className="col">
+        <div>
+          <div
+            style={{ width: "28rem" }}
+            className="container shadow p-3 mb-5 bg-white "
+          >
+            <h2>{message}</h2>
+            <h2 className="mb-2">Register User</h2>
+            <form
+              className="p-3 text-dark bg-light border "
+              onSubmit={handleSubmit(onSubmit)}
             >
-              Register
-            </button>
-          </div>
-          <div className="col">
-            <button
-              className="btn btn-success d-block mx-auto btn-md mt-3"
-              type="submit"
-              onClick={navigateToLogin}
-            >
-              Login
-            </button>
+              {/* register your input into the hook by invoking the "register" function */}
+
+              <div className="col ">
+                <label className="d-flex mb-2" htmlFor="userId">
+                  User ID
+                </label>
+                <input
+                  name="userId"
+                  className="form-control"
+                  {...register("userId", {
+                    required: true,
+                  })}
+                />
+                {/* errors will return when field validation fails  */}
+                {errors.userId && (
+                  <span className="text-danger">User ID is required</span>
+                )}
+              </div>
+
+              {/* Name field */}
+              <div className="col">
+                <label className="d-flex mb-2" htmlFor="username">
+                  Name
+                </label>
+                <input
+                  name="name"
+                  className="form-control"
+                  {...register("name", {
+                    required: true,
+                  })}
+                />
+                {/* errors will return when field validation fails  */}
+                {errors.username && (
+                  <span className="text-danger">Username is required</span>
+                )}
+              </div>
+
+              {/* email */}
+              <div className="col">
+                <label className="d-flex mb-2" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  name="email"
+                  className="form-control"
+                  {...register("email", {
+                    required: true,
+                    // pattern: {
+                    //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    //   message: "Invalid email address!",
+                    // },
+                  })}
+                />
+
+                {/* errors will return when field validation fails  */}
+                {errors.email && (
+                  <span className="text-danger">Email is required</span>
+                )}
+              </div>
+
+              {/* password */}
+              <div className="  col  ">
+                <label className="d-flex mb-2" htmlFor="dob">
+                  Password
+                </label>
+                <input
+                  name="password"
+                  type="password"
+                  className="form-control"
+                  {...register("password", { required: true })}
+                />
+
+                {/* errors will return when field validation fails  */}
+                {errors.password && (
+                  <span className="text-danger">Password is required</span>
+                )}
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <button
+                    className="btn btn-success d-block mx-auto btn-md mt-3"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    className="btn btn-success d-block mx-auto btn-md mt-3"
+                    type="submit"
+                    onClick={navigateToLogin}
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-      </form>
+      </div>
+      <div className="col">
+        <img src={image} alt="register" />
+      </div>
     </div>
   );
 }
-
-export default Register;
