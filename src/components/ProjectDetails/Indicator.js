@@ -9,12 +9,6 @@ export default function Indicator({
   projectTeamComposition,
   projectUpdates,
 }) {
-  const deleteProjectConcern = async () => {
-    try {
-    } catch (error) {
-      console.log("Delete project concern: ", error);
-    }
-  };
   return (
     <div>
       <div className="row mb-3">
@@ -25,22 +19,22 @@ export default function Indicator({
               <p className="card-text">
                 Fitness indicator shows the status of a project
               </p>
-              {projectUpdates?.projectFitnessIndicator == "g" || "G" ? (
-                <img width="50px" src={green} alt="" />
+
+              {projectUpdates.at(-1)?.projectFitnessIndicator === "g" ? (
+                <div>
+                  <img width="50px" src={green} alt="" />{" "}
+                </div>
               ) : (
                 <>
-                  {projectUpdates?.projectFitnessIndicator == "Y" ||
-                  "y" ||
-                  "a" ||
-                  "A" ? (
+                  {projectUpdates.at(-1)?.projectFitnessIndicator === "a" ? (
                     <div>
                       <img width="50px" src={amber} alt="" />
                     </div>
                   ) : (
                     <>
-                      {projectUpdates?.projectFitnessIndicator == "r" || "R" ? (
+                      {projectUpdates.at(-1)?.projectFitnessIndicator ===
+                      "r" ? (
                         <div>
-                          Red
                           <img width="50px" src={red} alt="" />
                         </div>
                       ) : (

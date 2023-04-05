@@ -52,7 +52,7 @@ export default function RaiseProjectConcern() {
         }
       );
       // logging the object
-      console.log(res);
+      console.log("res raised: ", res);
     } catch (error) {
       console.log("Error in concern: ", error);
     }
@@ -122,7 +122,7 @@ export default function RaiseProjectConcern() {
 
               <div className="col">
                 <label className="mt-2" htmlFor="raisedBy">
-                  Client Account Manager
+                  Raised by
                 </label>
                 <input
                   name="raisedBy"
@@ -245,7 +245,7 @@ export default function RaiseProjectConcern() {
                   type="date"
                   className="form-control"
                   {...register("concernMitigationDate", {
-                    required: true,
+                    required: true
                   })}
                 />
 
@@ -263,6 +263,7 @@ export default function RaiseProjectConcern() {
                 </label>
                 <input
                   type="number"
+                  name="projectManager"
                   className="form-control"
                   {...register("projectManager", {
                     required: true,

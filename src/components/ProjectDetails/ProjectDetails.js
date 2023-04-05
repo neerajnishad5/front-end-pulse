@@ -93,7 +93,7 @@ export default function ProjectDetails() {
 
         setProjects(projectDetails?.data.singleProject);
 
-        console.log("Set projects:  ", projectDetails?.data.singleProject);
+        
         console.log("Length: ", projectDetails.data.singleProject.length);
       }
     } catch (error) {
@@ -328,7 +328,7 @@ export default function ProjectDetails() {
                         <td>{concern.raisedBy}</td>
                         <td>{concern.raisedOn}</td>
                         <td>{concern.severityOfConcern}</td>
-                        <td>{concern.raisedInternally}</td>
+                        <td>{concern.raisedInternally ? "Yes": "No"}</td>
                         <td>{concern.status}</td>
                         <td>{concern.concernMitigationDate}</td>
                         <td>{concern.projectManager}</td>
