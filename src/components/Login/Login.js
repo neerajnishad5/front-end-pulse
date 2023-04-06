@@ -13,7 +13,8 @@ export default function Login() {
   const navigate = useNavigate();
 
   // for user role not defined
-  const [message, setMessage] = useState("");
+
+  const [wrongPassword, setWrongPassword] = useState("");
   const [assignStatus, setassignStatus] = useState("");
 
   const {
@@ -60,6 +61,7 @@ export default function Login() {
           navigate(`/specialUser/${res.data.user.email}`);
       }
     } catch (error) {
+      setWrongPassword(error.response.data.Message);
       console.log("error: ", error);
     }
   };
@@ -73,8 +75,9 @@ export default function Login() {
             style={{ width: "30rem" }}
             className="container shadow p-3 mb-5 bg-white rounded"
           >
-            <h2 className="text-danger">{message}</h2>
+            <h2 className="text-danger">{wrongPassword}</h2>
             <h2 className="text-warning">{assignStatus}</h2>
+
             <h2 className="mb-4">Login</h2>
             <form
               onSubmit={handleSubmit(onSubmit)}

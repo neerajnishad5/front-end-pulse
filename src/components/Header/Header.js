@@ -38,8 +38,8 @@ export default function Header() {
       </div>
       {data.status === "success" ? (
         <ul className="nav navbar-nav justify-content-end p-3 header display">
-          <li className="nav-tem me-1">
-            <p className="text-white">Welcome, {data.userObj.email}</p>
+          <li className="nav-item me-1">
+            <p className="text-white nav-item">Welcome, {data.userObj.email}</p>
           </li>
           {/* login and logout link using ternary operator */}
           <li className="nav-item ms-2">
