@@ -6,7 +6,7 @@
 
 /* a.active is anchor tag a & active : class added to it */
 .nav a.active {
-  background-color: #252627;
+  background-color: #450920;
   color: white;
   border-radius: 3px;
 }

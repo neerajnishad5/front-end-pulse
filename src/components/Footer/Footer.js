@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Footer() {
   const navigate = useNavigate();
   return (
-    <div className=" ">
+    <div className="">
       <div className="border back-footer text-white footer pt-3 mt-4 text-center row">
         <div className="col-sm">
           <h5 className="mb-3">Quick links</h5>
@@ -21,6 +21,7 @@ export default function Footer() {
                 className="text-reset pointer"
                 href="https://www.westagilelabs.com/about/"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 About
               </a>
@@ -52,6 +53,7 @@ export default function Footer() {
                 className="text-reset"
                 href="https://www.westagilelabs.com/contact/"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Contact Us
               </a>
@@ -67,6 +69,7 @@ export default function Footer() {
                 className="text-reset"
                 href="https://www.westagilelabs.com/blog/"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Blog
               </a>
@@ -81,6 +84,7 @@ export default function Footer() {
                 className="text-reset"
                 href="https://www.westagilelabs.com/privacy-policy/"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Privacy Policy
               </a>

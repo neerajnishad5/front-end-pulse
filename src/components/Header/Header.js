@@ -27,12 +27,14 @@ export default function Header() {
   return (
     <nav className="header-area navbar ">
       <div class="navbar-header">
-        <img
-          width="130px"
-          className="navbar-brand bg-light ms-3"
-          src={westagilelogo}
-          alt=""
-        />
+        <a href="/">
+          <img
+            width="130px"
+            className="navbar-brand bg-light ms-3"
+            src={westagilelogo}
+            alt=""
+          />
+        </a>
       </div>
       {data.status === "success" ? (
         <ul className="nav navbar-nav justify-content-end p-3 header display">
