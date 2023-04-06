@@ -58,7 +58,7 @@ export default function ProjectManagerHome() {
   const navigate = useNavigate();
 
   const navigateToDetailedView = (projectId) => {
-    navigate(`/project-details/${projectId}`);
+    navigate(`project-details/${projectId}`);
   };
 
   // useEffect get all data from projects TABLE

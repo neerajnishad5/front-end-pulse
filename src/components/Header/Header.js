@@ -7,6 +7,7 @@ import "./Header.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearState } from "../../slices/loginSlice";
+import westagilelogo from "../images/navbarLogo.png";
 
 export default function Header() {
   // initialize dispatch function
@@ -24,7 +25,15 @@ export default function Header() {
     dispatch(clearState());
   };
   return (
-    <nav className="header-area">
+    <nav className="header-area navbar ">
+      <div class="navbar-header">
+        <img
+          width="130px"
+          className="navbar-brand bg-light ms-3"
+          src={westagilelogo}
+          alt=""
+        />
+      </div>
       {data.status === "success" ? (
         <ul className="nav justify-content-end p-3 header display">
           <li className="nav-tem me-1">
