@@ -35,7 +35,7 @@ export default function Header() {
         />
       </div>
       {data.status === "success" ? (
-        <ul className="nav justify-content-end p-3 header display">
+        <ul className="nav navbar-nav justify-content-end p-3 header display">
           <li className="nav-tem me-1">
             <p className="text-white">Welcome, {data.userObj.email}</p>
           </li>
@@ -76,7 +76,7 @@ export default function Header() {
             </NavLink>
           </li>
 
-          {/* register link */}
+          {/* login link */}
           <li className="nav-item ms-2">
             <NavLink
               className={({ isActive }) =>
@@ -85,6 +85,20 @@ export default function Header() {
               to="login"
             >
               Login
+            </NavLink>
+          </li>
+
+          {/* about us link */}
+          <li className="nav-item ms-2">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "active nav-link" : "inactive nav-link"
+              }
+              to="https://www.westagilelabs.com/about/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              About us
             </NavLink>
           </li>
         </ul>
