@@ -25,7 +25,7 @@ export default function ProjectDetails() {
   const [detailedView, setDetailedView] = useState({});
   const [projectUpdates, setProjectUpdates] = useState([]);
 
-  const userId = data.userObj.userId;
+  // const userId = data.userObj.userId;
   const role = data.userObj.role;
 
   // console.log("detailed view obj", data);
@@ -33,7 +33,7 @@ export default function ProjectDetails() {
 
   const getProjectDetails = async (projectId) => {
     try {
-      if (role == "projectManager") {
+      if (role === "projectManager") {
         const projectDetails = await axios.get(
           `http://localhost:5000/project-manager/detailed-project-view/project/${projectId}`,
           {
@@ -55,7 +55,7 @@ export default function ProjectDetails() {
         setProjects(projectDetails?.data.singleProject);
 
         // set project details
-      } else if (role == "gdo") {
+      } else if (role === "gdo") {
         const projectDetails = await axios.get(
           `http://localhost:5000/gdo/gdoId/5/detailed-project-view/project/${projectId}`,
           {
@@ -75,7 +75,7 @@ export default function ProjectDetails() {
         setProjects(projectDetails.data?.singleProject);
 
         console.log("Set projects:  ", projectDetails?.data.singleProject);
-      } else if (role == "specialUser") {
+      } else if (role === "specialUser") {
         const projectDetails = await axios.get(
           `http://localhost:5000/special-user/detailed-view/project/${projectId}`,
           {
@@ -93,7 +93,6 @@ export default function ProjectDetails() {
 
         setProjects(projectDetails?.data.singleProject);
 
-        
         console.log("Length: ", projectDetails.data.singleProject.length);
       }
     } catch (error) {
@@ -103,14 +102,11 @@ export default function ProjectDetails() {
 
   const deleteEmployee = async (id) => {
     try {
-      const res = await axios.delete(
-        `http://localhost:5000/gdo/delete-member/${id}`,
-        {
-          headers: {
-            Authorization: `bearer ${token}`,
-          },
-        }
-      );
+      await axios.delete(`http://localhost:5000/gdo/delete-member/${id}`, {
+        headers: {
+          Authorization: `bearer ${token}`,
+        },
+      });
 
       getProjectDetails(projectId);
     } catch (error) {
@@ -121,7 +117,7 @@ export default function ProjectDetails() {
   const deleteProjectConcern = async (id) => {
     try {
       if (role === "projectManager") {
-        let res = await axios.delete(
+        await axios.delete(
           `http://localhost:5000/project-manager/delete-project-concern/${id}`,
           {
             headers: {
@@ -132,7 +128,7 @@ export default function ProjectDetails() {
         // reloading the table after deleting
         getProjectDetails(projectId);
       } else if (role === "gdo") {
-        let res = await axios.delete(
+        await axios.delete(
           `http://localhost:5000/${role}/delete-project-concern/2`,
           {
             headers: {
@@ -328,7 +324,7 @@ export default function ProjectDetails() {
                         <td>{concern.raisedBy}</td>
                         <td>{concern.raisedOn}</td>
                         <td>{concern.severityOfConcern}</td>
-                        <td>{concern.raisedInternally ? "Yes": "No"}</td>
+                        <td>{concern.raisedInternally ? "Yes" : "No"}</td>
                         <td>{concern.status}</td>
                         <td>{concern.concernMitigationDate}</td>
                         <td>{concern.projectManager}</td>

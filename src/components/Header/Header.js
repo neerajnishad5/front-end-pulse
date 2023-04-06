@@ -5,9 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Header.css";
 
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
 import { clearState } from "../../slices/loginSlice";
-
 
 export default function Header() {
   // initialize dispatch function
@@ -23,7 +22,7 @@ export default function Header() {
 
     // dispatch clear state
     dispatch(clearState());
-  }; 
+  };
   return (
     <nav className="header-area">
       {data.status === "success" ? (

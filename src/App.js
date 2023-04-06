@@ -84,7 +84,7 @@ export default function App() {
           element: <ResetPassword />,
         },
         {
-          path: "project-details/:id",
+          path: ":role/:email/project-details/:id",
           element: <ProjectDetails />,
         },
         {

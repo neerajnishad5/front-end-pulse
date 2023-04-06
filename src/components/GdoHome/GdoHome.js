@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { redirect, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react"; 
+import {   useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./GdoHome.css";
 import RaiseResourcingRequest from "./RaiseResourcingRequest";
@@ -14,11 +13,10 @@ export default function GdoHome() {
   const data = useSelector((state) => state.login);
   const [projects, setProjects] = useState([]);
 
-  const gdoId = data.userObj.userId;
-  const email = data.userObj.email;
+  const gdoId = data.userObj.userId; 
   // states for modal
 
-  console.log("data in special", data);
+  console.log("data in gdohome", data);
 
   const token = sessionStorage.getItem("token");
   // console.log("Token from super admin: ", token);
@@ -33,16 +31,15 @@ export default function GdoHome() {
         },
       }
     );
-    // console.log("projectLIst of gdo: ", projectsList);
+
     setProjects(projectsList.data.payload);
-    // console.log("Projects: ", projects);
   };
 
   const navigate = useNavigate();
 
   const navigateToDetailed = (projectId) => {
-    console.log("project id in naviagate: ", projectId);
-    navigate(`/project-details/${projectId}`);
+    console.log("project id in navigate: ", projectId);
+    navigate(`project-details/${projectId}`);
   };
   const [show, setShow] = useState(false);
 
