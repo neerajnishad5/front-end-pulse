@@ -91,6 +91,10 @@ export default function App() {
           path: "update-project/:id",
           element: <UpdateProject />,
         },
+        {
+          path: "reset-password/:email/:token",
+          element: <ResetPassword />,
+        },
       ],
     },
   ]);

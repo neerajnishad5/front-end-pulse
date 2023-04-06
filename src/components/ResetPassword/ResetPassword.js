@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
 // importing bootstrap
@@ -16,22 +16,21 @@ export default function ResetPassword() {
   // dispaly message of reset password
   const [message, setMessage] = useState("");
   const [otp, setOtp] = useState("");
-
-  // navigate
-  const navigate = useNavigate();
+  const { email, token } = useParams(); 
+ 
 
   // on user submit details
-  const onSubmit = async (user) => {
+  const onSubmit = async (password) => {
     // email from password to send OTP
-    console.log("User from onSubmit: ", user);
+    console.log("User from onSubmit: ", password);
 
     try {
       let res = await axios.put(
-        `http://localhost:5000/user/reset-password`,
-        user
+        `http://localhost:5000/user/reset-password/${email}/${token}`,
+        password
       );
       console.log("res in reset pass: ", res);
-      setMessage("Password reset successfully!");
+      // setMessage("Password reset successfully!");
 
       // make post requuest here
       // if (res.status === 201) {
@@ -50,40 +49,12 @@ export default function ResetPassword() {
     >
       <h2>{message}</h2>
       <h2>Reset Password</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="p-3 text-dark" method="put">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="p-3 text-dark"
+        method="put"
+      >
         {/* register your input into the hook by invoking the "register" function */}
-
-        <div className="col">
-          <label className="d-flex mb-2" htmlFor="email">
-            Email Address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            {...register("email", {
-              required: true,
-            })}
-          />
-          {/* errors will return when field validation fails  */}
-          {errors.email && (
-            <span className="text-danger">Email Address is required</span>
-          )}
-        </div>
-
-        <div className="col">
-          <label className="d-flex mb-2" htmlFor="otp">
-            OTP
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            {...register("otp", {
-              required: true,
-            })}
-          />
-          {/* errors will return when field validation fails  */}
-          {errors.otp && <span className="text-danger">OTP is required</span>}
-        </div>
 
         <div className="col">
           <label className="d-flex mb-2" htmlFor="password">

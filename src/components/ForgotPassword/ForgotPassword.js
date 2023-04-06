@@ -16,9 +16,12 @@ export default function ForgotPassword() {
   const onSubmit = async (email) => {
     try {
       // email from password to send otp
-      console.log(email);
+      console.log("Logging mail", email);
 
-      let res = await axios.post("http://localhost:5000/user/forgot-password");
+      let res = await axios.post(
+        "http://localhost:5000/user/forgot-password",
+        email
+      );
       console.log("Res in forgot pas: ", res);
 
       // make post requuest here

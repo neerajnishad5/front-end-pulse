@@ -11,9 +11,9 @@ export default function Indicator({
 }) {
   return (
     <div>
-      <div className="row mb-3">
+      <div className="row mb-3 mt-3">
         <div className="col col-sm-12 col-md-6 col-lg-4">
-          <div className="card color-this shadow p-3 mb-5 rounded">
+          <div className="card color-this shadow p-3 mb-5 ">
             <div className="card-body">
               <h5 className="card-title">Project Fitness Indicator</h5>
               <p className="card-text">
@@ -22,20 +22,20 @@ export default function Indicator({
 
               {projectUpdates.at(-1)?.projectFitnessIndicator === "g" ? (
                 <div>
-                  <img width="50px" src={green} alt="" />{" "}
+                  <img width="71px" src={green} alt="" />{" "}
                 </div>
               ) : (
                 <>
                   {projectUpdates.at(-1)?.projectFitnessIndicator === "a" ? (
                     <div>
-                      <img width="50px" src={amber} alt="" />
+                      <img width="71px" src={amber} alt="" />
                     </div>
                   ) : (
                     <>
                       {projectUpdates.at(-1)?.projectFitnessIndicator ===
                       "r" ? (
                         <div>
-                          <img width="50px" src={red} alt="" />
+                          <img width="71px" src={red} alt="" />
                         </div>
                       ) : (
                         <h2>Null</h2>
@@ -48,7 +48,7 @@ export default function Indicator({
           </div>
         </div>
         <div className="col col-sm-12 col-md-6 col-lg-4">
-          <div className="card color-this shadow p-3 mb-5 rounded">
+          <div className="card color-this shadow p-3 mb-5 ">
             <div className="card-body">
               <h5 className="card-title">Concerns Indicator</h5>
               <p className="card-text">
@@ -61,7 +61,7 @@ export default function Indicator({
           </div>
         </div>
         <div className="col col-sm-12 col-md-6 col-lg-4">
-          <div className="card shadow p-3 mb-5 color-this rounded">
+          <div className="card shadow p-3 mb-5 color-this ">
             <div className="card-body">
               <h5 className="card-title">Team Members</h5>
               <p className="card-text">
