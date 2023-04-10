@@ -15,9 +15,10 @@ export default function ResetPassword() {
 
   // dispaly message of reset password
   const [message, setMessage] = useState("");
-  const [otp, setOtp] = useState("");
-  const { email, token } = useParams(); 
- 
+  const { email, token } = useParams();
+
+  // initializin navigate
+  const navigate = useNavigate();
 
   // on user submit details
   const onSubmit = async (password) => {
@@ -30,13 +31,14 @@ export default function ResetPassword() {
         password
       );
       console.log("res in reset pass: ", res);
-      // setMessage("Password reset successfully!");
+      setMessage("Password reset successfully!");
 
       // make post requuest here
-      // if (res.status === 201) {
-      //   console.log("Password reset done!");
-      //   navigate("/login");
-      // }
+      if (res.status === 200) {
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
     } catch (error) {
       console.log("error: ", error);
     }

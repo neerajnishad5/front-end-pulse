@@ -1,3 +1,4 @@
+// importing CSS for App file
 import "./App.css";
 
 // importing bootstrap from node_modules
@@ -6,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // importing browser router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+
+// importing components
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import RootLayout from "./components/RootLayout/RootLayout";
@@ -23,6 +26,8 @@ import RaiseProjectConcern from "./components/ProjectManagerHome/RaiseProjectCon
 import RaiseProjectUpdate from "./components/ProjectManagerHome/RaiseProjectUpdate";
 import UpdateProject from "./components/GdoHome/UpdateProject";
 
+
+// exporting App function
 export default function App() {
   const browserRouterObj = createBrowserRouter([
     {
