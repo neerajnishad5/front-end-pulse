@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import assignButton from "../images/assignRole.svg";
 
 export default function AssignedUsersList() {
-  const [array, setArray] = useState([]);
+  const [users, setUsers] = useState([]); 
   const data = useSelector((state) => state.login);
   const [name, setName] = useState("");
 
@@ -17,11 +17,9 @@ export default function AssignedUsersList() {
   // for opening and closing on model
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
-  const [users, setUsers] = useState([]);
 
   const {
-    register,
-    handleSubmit,
+    register, 
     getValues,
     setValue,
     formState: { errors },
@@ -37,12 +35,12 @@ export default function AssignedUsersList() {
       "http://localhost:5000/super-admin/all-users",
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `BEARER ${token}`,
         },
       }
     );
     // console.log("payload data: ", userList.data.payload);
-    setArray(userList.data.payload);
+    
     setUsers(userList.data.payload);
     setName(data.userObj.name);
   };
@@ -53,7 +51,7 @@ export default function AssignedUsersList() {
     // calling getValues from react-hook-form
     let modifiedUser = getValues();
 
-    console.log("modified user: ", modifiedUser);
+    // console.log("modified user: ", modifiedUser);
 
     // make http put req
 
@@ -62,7 +60,7 @@ export default function AssignedUsersList() {
       modifiedUser,
       {
         headers: {
-          Authorization: `bearer ${token}`,
+          Authorization: `BEARER ${token}`,
         },
       }
     );
@@ -71,15 +69,13 @@ export default function AssignedUsersList() {
     getUsers();
 
     // resetting array to reload as role is updated
-    setArray(res.data.payload);
+    setUsers(res.data.payload);
   };
 
   const editModal = (index) => {
-    openModal();
+    openModal(); 
 
-    // set already put data to input fields, this uses name property of react-hook-form
-
-    setValue("userId", array[index].userId);
+    setValue("userId", users[index].userId);
     // setValue("role", array[index].role);
   };
 
@@ -93,7 +89,7 @@ export default function AssignedUsersList() {
         {users?.length > 0 && (
           <div className="container">
             <h2>Welcome Super Admin {name}</h2>
-            <h2 className="bg-success w-25 d-flex justify-content-center mx-auto text-white p-3 mb-3 mt-3 rounded">
+            <h2 className="bg-success w-25 d-flex justify-content-center mx-auto text-white p-2 mb-3 mt-3 rounded">
               Users List
             </h2>
 
@@ -101,7 +97,7 @@ export default function AssignedUsersList() {
               style={{ backgroundcolor: "#FCAB10" }}
               className="table-responsive"
             >
-              <table className="table table-hover table-striped border ms-4 me-4 shadow p-3 mb-5  rounded">
+              <table className="table table-hover table-striped border ms-4 me-4 shadow p-3 mb-5 rounded">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
@@ -179,7 +175,7 @@ export default function AssignedUsersList() {
                   </option>
                   <option value="gdo">GDO Head</option>
                   <option value="projectManager">Project Manager</option>
-                  <option value="specialUser">Special User</option>
+                  <option value="admin">Admin</option>
                   <option value="hr">HR Manager</option>
                   <option value="notAssigned">Null</option>
                 </select>

@@ -1,24 +1,24 @@
 // importing bootstrap from node_modules
 import "bootstrap/dist/css/bootstrap.min.css";
-import Register from "../Register/Register";
-import Container from "react-bootstrap/Container";
-import testing from "../images/testing.svg";
+
+// importing WAL picture
+import walPicture from "../images/testing.svg";
 import "./Home.css";
 
 // exporting root layout component
 export default function Home() {
   return (
-    <div className=" ">
+    <>
       <div className="row home d-flex justify-content-around align-items-center p-3">
-        <div className="col-sm-12 col-md-6 col-lg-4">
+        <div className="col-sm-12 col-md-6 col-lg-4 ">
           <h2
             style={{ width: "530px", backgroundColor: "#4CA383" }}
-            className=" text-white text-center p-3"
+            className=" text-white text-center p-3 border border-dark"
           >
             WAL PULSE
           </h2>
           <img
-            src={testing}
+            src={walPicture}
             alt=""
             className="img-responsive"
             width={"530px"}
@@ -34,6 +34,6 @@ export default function Home() {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }

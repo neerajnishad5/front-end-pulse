@@ -11,7 +11,9 @@ export default function ForgotPassword() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all"
+  });
   const [message, setMessage] = useState("");
 
   // on user submit details

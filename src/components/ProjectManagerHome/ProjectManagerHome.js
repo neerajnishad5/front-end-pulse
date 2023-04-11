@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react"; 
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +31,7 @@ export default function ProjectManagerHome() {
   // gettin project list
   const getProjectList = async () => {
     const projectList = await axios.get(
-      `http://localhost:5000/project-manager/projects-under-project-manager/${projectManagerId}`,
+      `http://localhost:5000/project-manager/all-projects/${projectManagerId}`,
       {
         headers: {
           Authorization: `BEARER ${token}`,
@@ -40,8 +39,7 @@ export default function ProjectManagerHome() {
       }
     );
 
-    console.log("sfdads", projectList);
-
+    // console.log("sfdads", projectList);
     setProjects(projectList.data.payload);
   };
 
@@ -88,7 +86,7 @@ export default function ProjectManagerHome() {
         </div>
       </div>
 
-      <div className="project-list ">
+      <div className="project-list">
         {projects?.length > 0 && (
           <div className="table-responsive">
             <h2>Projects under Project manager</h2>

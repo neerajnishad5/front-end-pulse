@@ -1,15 +1,22 @@
 import "./Login.css";
 import { useForm } from "react-hook-form";
+
+// importing axios for making API requests
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../slices/loginSlice";
+
+// importing images
 import image from "../images/loginpage.svg";
 
 // Login function
 export default function Login() {
+  // initializing dispatch
   const dispatch = useDispatch();
+
+  // initializing navigate
   const navigate = useNavigate();
 
   // for user role not defined
@@ -21,7 +28,9 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   const data = useSelector((state) => state.login);
   const role = data.userObj.role;
@@ -32,15 +41,18 @@ export default function Login() {
   const onSubmit = async (user) => {
     try {
       // user from form
-      console.log(user);
+      // console.log(user);
+
+      // dispatching user to store
       dispatch(userLogin(user));
 
+      // making login request
       let res = await axios.post("http://localhost:5000/user/login", user);
       console.log("res in Login: ", res);
 
       // getting token from payload
       const token = res.data.token;
-      if (role == "notAssigned") {
+      if (role === "notAssigned") {
         setassignStatus("Logged in but user role not assigned!");
         setTimeout(() => {
           navigate("/");
@@ -50,15 +62,16 @@ export default function Login() {
       // setting token to session storage
       sessionStorage.setItem("token", token);
 
+      // email from userObj
+      const email = res.data.user.email;
+
       if (res.data.Message === "Login successful!") {
-        if (res.data.user.role === "gdo")
-          navigate(`/gdo/${res.data.user.email}`);
+        if (res.data.user.role === "gdo") navigate(`/gdo/${email}`);
         else if (res.data.user.role === "superAdmin")
-          navigate(`/superAdmin/${res.data.user.email}`);
+          navigate(`/superAdmin/${email}`);
         else if (res.data.user.role === "projectManager")
-          navigate(`/projectManager/${res.data.user.email}`);
-        else if (res.data.user.role === "specialUser")
-          navigate(`/specialUser/${res.data.user.email}`);
+          navigate(`/projectManager/${email}`);
+        else if (res.data.user.role === "admin") navigate(`/admin/${email}`);
       }
     } catch (error) {
       setWrongPassword(error.response.data.Message);
@@ -83,8 +96,6 @@ export default function Login() {
               onSubmit={handleSubmit(onSubmit)}
               className="p-3 text-dark form-group bg-light border"
             >
-              {/* register your input into the hook by invoking the "register" function */}
-
               <div className="col ">
                 <label className="float-start mb-2" htmlFor="email">
                   Email
@@ -98,7 +109,7 @@ export default function Login() {
                   })}
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.email && (
+                {errors.email?.type === "required" && (
                   <span className="text-danger">Email ID is required</span>
                 )}
               </div>
@@ -117,7 +128,7 @@ export default function Login() {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.password && (
+                {errors.password?.type === "required" && (
                   <span className="text-danger">Password is required</span>
                 )}
               </div>

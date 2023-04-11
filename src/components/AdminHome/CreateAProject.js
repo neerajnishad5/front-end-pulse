@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import "./SpecialUserHome.css";
+import "./AdminHome.css";
 import createButton from "../images/create.svg";
 
 // useForm
@@ -25,7 +25,9 @@ export default function CreateAProject({ getProjects }) {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   const saveProject = async () => {
     closeModal();
@@ -37,7 +39,7 @@ export default function CreateAProject({ getProjects }) {
 
     try {
       let res = await axios.post(
-        `http://localhost:5000/special-user/create-project`,
+        `http://localhost:5000/admin/create-project`,
         projectInput,
         {
           headers: {
@@ -86,12 +88,12 @@ export default function CreateAProject({ getProjects }) {
                   })}
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.projectId && (
+                {errors.projectId?.type === 'required' && (
                   <span className="text-danger">Project ID is required</span>
                 )}
               </div>
 
-              <div className="col   ">
+              <div className="col">
                 <label htmlFor="projectName">Project Name</label>
                 <input
                   type="text"
@@ -102,12 +104,12 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectName && (
+                {errors.projectName?.type === 'required' && (
                   <span className="text-danger">Project Name is required</span>
                 )}
               </div>
 
-              <div className="col   ">
+              <div className="col">
                 <label htmlFor="clientName">Client Name</label>
                 <input
                   type="text"
@@ -118,12 +120,12 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.clientName && (
+                {errors.clientName?.type === 'required' && (
                   <span className="text-danger">Client Name is required</span>
                 )}
               </div>
 
-              <div className="col   ">
+              <div className="col">
                 <label htmlFor="clientAccountManager">
                   Client Account Manager Name
                 </label>
@@ -136,7 +138,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.clientAccountManager && (
+                {errors.clientAccountManager?.type === 'required' && (
                   <span className="text-danger">
                     Client Account Manager is required
                   </span>
@@ -164,7 +166,7 @@ export default function CreateAProject({ getProjects }) {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectStatus && (
+                {errors.projectStatus?.type === 'required' && (
                   <span className="text-danger">
                     Project Status is required
                   </span>
@@ -180,7 +182,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectStartDate && (
+                {errors.projectStartDate?.type === 'required' && (
                   <span className="text-danger">
                     Project Start Date is required
                   </span>
@@ -196,7 +198,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectEndDate && (
+                {errors.projectEndDate?.type === 'required' && (
                   <span className="text-danger">
                     Project End Date is required
                   </span>
@@ -222,7 +224,7 @@ export default function CreateAProject({ getProjects }) {
                   <option value="r">Red</option>
                 </select>
                 {/* errors will return when field validation fails  */}
-                {errors.projectFitnessIndicator && (
+                {errors.projectFitnessIndicator?.type === 'required' && (
                   <span className="text-danger">
                     Project Fitness Indicator is required
                   </span>
@@ -240,7 +242,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectDomain && (
+                {errors.projectDomain?.type === 'required' && (
                   <span className="text-danger">
                     Project Domain is required
                   </span>
@@ -274,7 +276,7 @@ export default function CreateAProject({ getProjects }) {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectType && (
+                {errors.projectType?.type === 'required' && (
                   <span className="text-danger">Project Type is required</span>
                 )}
               </div>
@@ -290,7 +292,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.gdoId && (
+                {errors.gdoId?.type === 'required' && (
                   <span className="text-danger">GDO ID is required</span>
                 )}
               </div>
@@ -307,7 +309,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectManager && (
+                {errors.projectManager?.type === 'required' && (
                   <span className="text-danger">
                     Project Manager ID is required
                   </span>
@@ -316,8 +318,8 @@ export default function CreateAProject({ getProjects }) {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="success" onClick={saveProject}>
-              Save
+            <Button variant="success" type="submit" onClick={saveProject}>
+              Create
             </Button>
           </Modal.Footer>
         </Modal>

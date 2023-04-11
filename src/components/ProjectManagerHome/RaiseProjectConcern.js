@@ -23,7 +23,9 @@ export default function RaiseProjectConcern() {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   const concernModalEdit = () => {
     openModal2();
@@ -31,8 +33,6 @@ export default function RaiseProjectConcern() {
 
   // post project concern
   const postProjectConcern = async () => {
-    // insert close modal here
-
     closeModal2();
 
     const postConcern = getValues();
@@ -79,10 +79,7 @@ export default function RaiseProjectConcern() {
             <Modal.Title>Raise project concern</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {/* RAISE PROJECT UPDATE form */}
             <form className="p-3 bg-white text-dark rounded">
-              {/* register your input into the hook by invoking the "register" function */}
-
               <div className="col">
                 <label htmlFor="projectId">Project ID</label>
                 <input
@@ -94,7 +91,7 @@ export default function RaiseProjectConcern() {
                   })}
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.projectId && (
+                {errors.projectId?.type === "required" && (
                   <span className="text-danger">Project ID is required</span>
                 )}
               </div>
@@ -113,7 +110,7 @@ export default function RaiseProjectConcern() {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.concernDescription && (
+                {errors.concernDescription?.type === "required" && (
                   <span className="text-danger">
                     Concern Description is required
                   </span>
@@ -134,7 +131,7 @@ export default function RaiseProjectConcern() {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.raisedBy && (
+                {errors.raisedBy?.type === "required" && (
                   <span className="text-danger">Raised by is required</span>
                 )}
               </div>
@@ -153,7 +150,7 @@ export default function RaiseProjectConcern() {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.raisedOn && (
+                {errors.raisedOn?.type === "required" && (
                   <span className="text-danger">Raised on is required</span>
                 )}
               </div>
@@ -178,7 +175,7 @@ export default function RaiseProjectConcern() {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.severityOfConcern && (
+                {errors.severityOfConcern?.type === "required" && (
                   <span className="text-danger">
                     Severity of concern is required
                   </span>
@@ -203,7 +200,7 @@ export default function RaiseProjectConcern() {
                   <option value="false">No</option>
                 </select>
                 {/* errors will return when field validation fails  */}
-                {errors.raisedInternally && (
+                {errors.raisedInternally?.type === "required" && (
                   <span className="text-danger">
                     Raised internally is required
                   </span>
@@ -232,7 +229,7 @@ export default function RaiseProjectConcern() {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.status && (
+                {errors.status?.type === "required" && (
                   <span className="text-danger">Status is required</span>
                 )}
               </div>
@@ -245,12 +242,12 @@ export default function RaiseProjectConcern() {
                   type="date"
                   className="form-control"
                   {...register("concernMitigationDate", {
-                    required: true
+                    required: true,
                   })}
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.concernMitigationDate && (
+                {errors.concernMitigationDate?.type === "required" && (
                   <span className="text-danger">
                     Concern Mitigation date is required
                   </span>
@@ -271,7 +268,7 @@ export default function RaiseProjectConcern() {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectManager && (
+                {errors.projectManager?.type === "required" && (
                   <span className="text-danger">
                     Project Manager is required
                   </span>
@@ -280,7 +277,11 @@ export default function RaiseProjectConcern() {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="success" onClick={postProjectConcern}>
+            <Button
+              variant="success"
+              type="submit"
+              onClick={postProjectConcern}
+            >
               Save
             </Button>
           </Modal.Footer>

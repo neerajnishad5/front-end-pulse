@@ -13,7 +13,9 @@ export default function UpdateProject({ getProjects }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   const { id } = useParams();
   const projectId = id;
@@ -68,7 +70,7 @@ export default function UpdateProject({ getProjects }) {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.projectName && (
+            {errors.projectName?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Project Name is required
               </span>
@@ -88,7 +90,7 @@ export default function UpdateProject({ getProjects }) {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.clientName && (
+            {errors.clientName?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Client Name is required
               </span>
@@ -108,7 +110,7 @@ export default function UpdateProject({ getProjects }) {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.clientAccountManager && (
+            {errors.clientAccountManager?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Client Account Manager is required
               </span>
@@ -138,7 +140,7 @@ export default function UpdateProject({ getProjects }) {
             </select>
 
             {/* errors will return when field validation fails  */}
-            {errors.projectStatus && (
+            {errors.projectStatus?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Project Status is required
               </span>
@@ -156,7 +158,7 @@ export default function UpdateProject({ getProjects }) {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.projectStartDate && (
+            {errors.projectStartDate?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Project Start Date is required
               </span>
@@ -174,7 +176,7 @@ export default function UpdateProject({ getProjects }) {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.projectEndDate && (
+            {errors.projectEndDate?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Project End Date is required
               </span>
@@ -200,7 +202,7 @@ export default function UpdateProject({ getProjects }) {
               <option value="r">Red</option>
             </select>
             {/* errors will return when field validation fails  */}
-            {errors.projectFitnessIndicator && (
+            {errors.projectFitnessIndicator?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Project Fitness Indicator is required
               </span>
@@ -220,7 +222,7 @@ export default function UpdateProject({ getProjects }) {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.projectDomain && (
+            {errors.projectDomain?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Project Domain is required
               </span>
@@ -254,7 +256,7 @@ export default function UpdateProject({ getProjects }) {
             </select>
 
             {/* errors will return when field validation fails  */}
-            {errors.projectType && (
+            {errors.projectType?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Project Type is required
               </span>
@@ -274,7 +276,7 @@ export default function UpdateProject({ getProjects }) {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.gdoId && (
+            {errors.gdoId?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 GDO ID is required
               </span>
@@ -295,7 +297,7 @@ export default function UpdateProject({ getProjects }) {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.projectManager && (
+            {errors.projectManager?.type === "required" && (
               <span className="text-danger d-flex mx-auto">
                 Project Manager ID is required
               </span>

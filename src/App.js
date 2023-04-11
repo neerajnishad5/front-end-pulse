@@ -7,7 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // importing browser router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-
 // importing components
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
@@ -16,7 +15,7 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Home from "./components/Home/Home";
 import SuperAdminHome from "./components/SuperAdminHome/SuperAdminHome";
-import SpecialUser from "./components/SpecialUserHome/SpecialUserHome";
+import AdminHome from "./components/AdminHome/AdminHome";
 import ProjectManager from "./components/ProjectManagerHome/ProjectManagerHome";
 import GdoHome from "./components/GdoHome/GdoHome";
 import ProjectsList from "./components/ProjectsList/ProjectsList";
@@ -25,7 +24,6 @@ import ProjectDetails from "./components/ProjectDetails/ProjectDetails";
 import RaiseProjectConcern from "./components/ProjectManagerHome/RaiseProjectConcern";
 import RaiseProjectUpdate from "./components/ProjectManagerHome/RaiseProjectUpdate";
 import UpdateProject from "./components/GdoHome/UpdateProject";
-
 
 // exporting App function
 export default function App() {
@@ -57,8 +55,8 @@ export default function App() {
         },
 
         {
-          path: "specialUser/:email",
-          element: <SpecialUser />,
+          path: "admin/:email",
+          element: <AdminHome />,
           children: [{ path: "projects", element: <ProjectsList /> }],
         },
         {

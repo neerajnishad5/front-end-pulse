@@ -23,7 +23,9 @@ export default function RaiseResourcingRequest({ show, setShow }) {
     setValue,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all"
+  });
 
   // MODAL 2
 

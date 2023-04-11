@@ -1,3 +1,13 @@
 .back-footer {
   background-color: #0e402d;
+  color: white;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline ;
+  
 }

@@ -4,10 +4,11 @@ import "./Footer.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
+
   const navigate = useNavigate();
   return (
-    <div className="">
-      <div className="border back-footer text-white footer pt-3 mt-4 text-center row">
+    <>
+      <div className="border back-footer footer pt-3 mt-4 text-center row">
         <div className="col-sm">
           <h5 className="mb-3">Quick links</h5>
           <ul className="list-unstyled  ">
@@ -63,7 +64,7 @@ export default function Footer() {
 
         <div className="col-sm">
           <h5 className="mb-3">Resources</h5>
-          <ul className="list-unstyled  ">
+          <ul className="list-unstyled">
             <li>
               <a
                 className="text-reset"
@@ -96,8 +97,7 @@ export default function Footer() {
           <h5 className="mb-3">Newsletter</h5>
           <p className="small text-start  ">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet
-            soluta commodi dolorem ipsa reprehenderit dicta, et molestiae
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet         
             ducimus animi harum! eiusmod tempor incididunt.
           </p>
           <form>
@@ -116,6 +116,6 @@ export default function Footer() {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -32,7 +32,9 @@ export default function RaiseProjectUpdate({
     getValues,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   const editUser = () => {
     openModal();
@@ -97,10 +99,7 @@ export default function RaiseProjectUpdate({
               <Modal.Title>Raise project update</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              {/* use edit form */}
               <form className="p-3 bg-white text-dark rounded">
-                {/* register your input into the hook by invoking the "register" function */}
-
                 <div className="col">
                   <label htmlFor="projectId">Project ID</label>
                   <input
@@ -112,7 +111,7 @@ export default function RaiseProjectUpdate({
                     })}
                   />
                   {/* errors will return when field validation fails  */}
-                  {errors.projectId && (
+                  {errors.projectId?.type === "required" && (
                     <span className="text-danger">Project ID is required</span>
                   )}
                 </div>
@@ -129,7 +128,7 @@ export default function RaiseProjectUpdate({
                   />
 
                   {/* errors will return when field validation fails  */}
-                  {errors.updateDate && (
+                  {errors.updateDate?.type === "required" && (
                     <span className="text-danger">Update Date is required</span>
                   )}
                 </div>
@@ -148,7 +147,7 @@ export default function RaiseProjectUpdate({
                   />
 
                   {/* errors will return when field validation fails  */}
-                  {errors.clientAccountManager && (
+                  {errors.clientAccountManager?.type === "required" && (
                     <span className="text-danger">
                       Client Account Manager is required
                     </span>
@@ -177,7 +176,7 @@ export default function RaiseProjectUpdate({
                   </select>
 
                   {/* errors will return when field validation fails  */}
-                  {errors.projectStatus && (
+                  {errors.projectStatus?.type === "required" && (
                     <span className="text-danger">
                       Project Status is required
                     </span>
@@ -203,7 +202,7 @@ export default function RaiseProjectUpdate({
                     <option value="r">Red</option>
                   </select>
                   {/* errors will return when field validation fails  */}
-                  {errors.projectFitnessIndicator && (
+                  {errors.projectFitnessIndicator?.type === "required" && (
                     <span className="text-danger">
                       Project Fitness Indicator is required
                     </span>
@@ -221,7 +220,7 @@ export default function RaiseProjectUpdate({
                   />
 
                   {/* errors will return when field validation fails  */}
-                  {errors.projectManager && (
+                  {errors.projectManager?.type === "required" && (
                     <span className="text-danger">
                       Project Manager is required
                     </span>
@@ -230,7 +229,11 @@ export default function RaiseProjectUpdate({
               </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="success" onClick={saveProjectUpdate}>
+              <Button
+                variant="success"
+                type="submit"
+                onClick={saveProjectUpdate}
+              >
                 Save
               </Button>
             </Modal.Footer>

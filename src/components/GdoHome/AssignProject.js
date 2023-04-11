@@ -1,12 +1,12 @@
 import Card from "react-bootstrap/Card";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 // useForm
 import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
 import assignButton from "../images/assign.svg";
 
 export default function AssignProject({ getProjects }) {
@@ -25,12 +25,14 @@ export default function AssignProject({ getProjects }) {
   // react hook form
   const {
     register,
-    handleSubmit,
+
     getValues,
-    setValue,
+
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   // save user
   const saveModal = async () => {
@@ -81,10 +83,7 @@ export default function AssignProject({ getProjects }) {
             <Modal.Title>Assign project to employee</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {/* use edit form */}
             <form className="p-3 bg-white text-dark rounded">
-              {/* register your input into the hook by invoking the "register" function */}
-
               <div className="col">
                 <label htmlFor="id">Employee ID</label>
                 <input
@@ -96,7 +95,7 @@ export default function AssignProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.id && (
+                {errors.id?.type === "required" && (
                   <span className="text-danger">ID is required</span>
                 )}
               </div>
@@ -112,7 +111,7 @@ export default function AssignProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectId && (
+                {errors.projectId?.type === "required" && (
                   <span className="text-danger">Project ID is required</span>
                 )}
               </div>
@@ -129,7 +128,7 @@ export default function AssignProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.resourceName && (
+                {errors.resourceName?.type === "required" && (
                   <span className="text-danger">resource Name is required</span>
                 )}
               </div>
@@ -143,7 +142,7 @@ export default function AssignProject({ getProjects }) {
                   id="roleInProject"
                   className="form-control"
                 >
-                  <option value="" selected disabled>
+                  <option selected disabled>
                     -- Select status --
                   </option>
                   <option value="QA">QA</option>
@@ -154,7 +153,7 @@ export default function AssignProject({ getProjects }) {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.roleInProject && (
+                {errors.roleInProject?.type === "required" && (
                   <span className="text-danger">Role is required</span>
                 )}
               </div>
@@ -170,7 +169,7 @@ export default function AssignProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.startDate && (
+                {errors.startDate?.type === "required" && (
                   <span className="text-danger">Start Date is required</span>
                 )}
               </div>
@@ -200,7 +199,7 @@ export default function AssignProject({ getProjects }) {
                   id="status"
                   className="form-control"
                 >
-                  <option value="" selected disabled>
+                  <option selected disabled>
                     -- Status --
                   </option>
                   <option value="true">Active</option>
@@ -208,7 +207,7 @@ export default function AssignProject({ getProjects }) {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.status && (
+                {errors.status?.type === "required" && (
                   <span className="text-danger">Status is required</span>
                 )}
               </div>
@@ -222,7 +221,7 @@ export default function AssignProject({ getProjects }) {
                   id="billingStatus"
                   className="form-control"
                 >
-                  <option value="" selected disabled>
+                  <option selected disabled>
                     -- Select status --
                   </option>
                   <option value="Billed">Billed</option>
@@ -230,7 +229,7 @@ export default function AssignProject({ getProjects }) {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.billingStatus && (
+                {errors.billingStatus?.type === "required" && (
                   <span className="text-danger">
                     Billing Status is required
                   </span>
@@ -246,13 +245,15 @@ export default function AssignProject({ getProjects }) {
                   id="exposedToCustomer"
                   className="form-control"
                 >
-                  <option selected>Select status</option>
+                  <option disabled selected>
+                    -- Select status --
+                  </option>
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.exposedToCustomer && (
+                {errors.exposedToCustomer?.type === "required" && (
                   <span className="text-danger">
                     Exposed To Customer is required
                   </span>
@@ -276,7 +277,7 @@ export default function AssignProject({ getProjects }) {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.allocationType && (
+                {errors.allocationType?.type === "required" && (
                   <span className="text-danger">
                     Allocation Type is required
                   </span>
@@ -285,7 +286,7 @@ export default function AssignProject({ getProjects }) {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="success" onClick={saveModal}>
+            <Button variant="success" type="submit" onClick={saveModal}>
               Save
             </Button>
           </Modal.Footer>

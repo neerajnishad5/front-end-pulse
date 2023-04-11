@@ -62,8 +62,6 @@ export default function Register() {
               className="p-3 text-dark bg-light border "
               onSubmit={handleSubmit(onSubmit)}
             >
-              {/* register your input into the hook by invoking the "register" function */}
-
               <div className="col ">
                 <label className="d-flex mb-2" htmlFor="userId">
                   User ID
@@ -76,7 +74,7 @@ export default function Register() {
                   })}
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.userId && (
+                {errors.userId?.type === "required" && (
                   <span className="text-danger">User ID is required</span>
                 )}
               </div>
@@ -94,7 +92,7 @@ export default function Register() {
                   })}
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.username && (
+                {errors.username?.type === 'required' && (
                   <span className="text-danger">Username is required</span>
                 )}
               </div>
@@ -117,7 +115,7 @@ export default function Register() {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.email && (
+                {errors.email?.type === 'required' && (
                   <span className="text-danger">Email is required</span>
                 )}
               </div>
@@ -135,7 +133,7 @@ export default function Register() {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.password && (
+                {errors.password?.type === 'required' && (
                   <span className="text-danger">Password is required</span>
                 )}
               </div>
