@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom";
 function ProjectsList({ projects, deleteAProject }) {
   // initialize navigate
   const navigate = useNavigate();
+
+  // route for detailed view
+  const navigateToDetailedView = (projectId) => {
+    console.log(projectId);
+    navigate(`project-details/${projectId}`);
+  };
+
   return (
     <>
       <div className="project-list">
@@ -61,7 +68,7 @@ function ProjectsList({ projects, deleteAProject }) {
                         <button
                           className="btn btn-success"
                           onClick={() =>
-                            navigate(`/project-details/${project.projectId}`)
+                            navigateToDetailedView(project.projectId)
                           }
                         >
                           <img width="25px" src={detailsButton} alt="" />

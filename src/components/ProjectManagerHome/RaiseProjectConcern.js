@@ -37,6 +37,8 @@ export default function RaiseProjectConcern() {
 
     const postConcern = getValues();
 
+    postConcern.raisedOn = new Date().toJSON().slice(0, 10);
+
     console.log("log from project concern: ", postConcern);
 
     const projectId = postConcern.projectId;
@@ -133,25 +135,6 @@ export default function RaiseProjectConcern() {
                 {/* errors will return when field validation fails  */}
                 {errors.raisedBy?.type === "required" && (
                   <span className="text-danger">Raised by is required</span>
-                )}
-              </div>
-
-              <div className="col">
-                <label className="mt-2" htmlFor="raisedOn">
-                  Concern raise date
-                </label>
-                <input
-                  name="raisedOn"
-                  type="date"
-                  className="form-control"
-                  {...register("raisedOn", {
-                    required: true,
-                  })}
-                />
-
-                {/* errors will return when field validation fails  */}
-                {errors.raisedOn?.type === "required" && (
-                  <span className="text-danger">Raised on is required</span>
                 )}
               </div>
 

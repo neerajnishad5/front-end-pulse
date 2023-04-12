@@ -58,7 +58,7 @@ export default function GdoHome() {
           <RaiseResourcingRequest show={show} setShow={setShow} />
         </div>
         <div className="col-sm-4 col-md-4 col-lg-4">
-          <AssignProject getProjects={getProjects} />
+          <AssignProject projects={projects} getProjects={getProjects} />
         </div>
       </div>
 

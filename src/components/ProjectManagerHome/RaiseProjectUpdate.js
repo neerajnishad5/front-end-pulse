@@ -51,6 +51,8 @@ export default function RaiseProjectUpdate({
 
     const projectId = postUpdate.projectId;
 
+    postUpdate.updateDate = new Date().toJSON().slice(0, 10);
+
     // make http put req
 
     try {
@@ -64,7 +66,7 @@ export default function RaiseProjectUpdate({
         }
       );
       // logging the object
-      console.log(res);
+      console.log("update pososos: ", res);
 
       // setting the data to screen
       console.log("res data paylaod: ", res.data.payload);
@@ -113,23 +115,6 @@ export default function RaiseProjectUpdate({
                   {/* errors will return when field validation fails  */}
                   {errors.projectId?.type === "required" && (
                     <span className="text-danger">Project ID is required</span>
-                  )}
-                </div>
-
-                <div className="col">
-                  <label htmlFor="updateDate">Update date</label>
-                  <input
-                    name="updateDate"
-                    type="date"
-                    className="form-control"
-                    {...register("updateDate", {
-                      required: true,
-                    })}
-                  />
-
-                  {/* errors will return when field validation fails  */}
-                  {errors.updateDate?.type === "required" && (
-                    <span className="text-danger">Update Date is required</span>
                   )}
                 </div>
 

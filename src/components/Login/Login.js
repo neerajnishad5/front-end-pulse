@@ -23,6 +23,7 @@ export default function Login() {
 
   const [wrongPassword, setWrongPassword] = useState("");
   const [assignStatus, setassignStatus] = useState("");
+  const [notRegistered, setNotRegistered] = useState("");
 
   const {
     register,
@@ -49,10 +50,13 @@ export default function Login() {
       // making login request
       let res = await axios.post("http://localhost:5000/user/login", user);
       console.log("res in Login: ", res);
+      if (res.data.Message === "User not found!") {
+        setNotRegistered("User not registered!");
+      }
 
       // getting token from payload
-      const token = res.data.token;
-      if (role === "notAssigned") {
+      const token = res.data?.token;
+      if (role === "notAssigned" || role === null) {
         setassignStatus("Logged in but user role not assigned!");
         setTimeout(() => {
           navigate("/");
@@ -74,7 +78,7 @@ export default function Login() {
         else if (res.data.user.role === "admin") navigate(`/admin/${email}`);
       }
     } catch (error) {
-      setWrongPassword(error.response.data.Message);
+      setWrongPassword(error.response.data?.Message);
       console.log("error: ", error);
     }
   };
@@ -92,6 +96,7 @@ export default function Login() {
             <h2 className="text-warning">{assignStatus}</h2>
 
             <h2 className="mb-4">Login</h2>
+            <h3 className="text-danger">{notRegistered}</h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="p-3 text-dark form-group bg-light border"
@@ -110,10 +115,13 @@ export default function Login() {
                 />
                 {/* errors will return when field validation fails  */}
                 {errors.email?.type === "required" && (
-                  <span className="text-danger">Email ID is required</span>
+                  <span className="text-danger float-start">
+                    Email ID is required
+                  </span>
                 )}
               </div>
 
+              <br />
               {/* password */}
               <div className="col">
                 <label className="float-start mb-2" htmlFor="dob">
@@ -129,9 +137,12 @@ export default function Login() {
 
                 {/* errors will return when field validation fails  */}
                 {errors.password?.type === "required" && (
-                  <span className="text-danger">Password is required</span>
+                  <span className="text-danger float-start">
+                    Password is required
+                  </span>
                 )}
               </div>
+              <br />
 
               <div className="row">
                 <div className="col">

@@ -30,6 +30,8 @@ export default function UpdateProject({ getProjects }) {
     console.log("project update", projectUpdate);
 
     projectUpdate.projectId = projectId;
+    // projectUpdate.date = new Date();
+    
 
     try {
       let res = await axios.put(

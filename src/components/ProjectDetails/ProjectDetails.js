@@ -65,7 +65,7 @@ export default function ProjectDetails() {
           }
         );
 
-        console.log("Projct deails: ", projectDetails);
+        // console.log("Projct deails: ", projectDetails);
 
         setProjectTeamComposition(
           projectDetails.data?.payload.projectTeamCompositions
@@ -74,10 +74,10 @@ export default function ProjectDetails() {
         setProjectConcerns(projectDetails.data?.payload.projectConcerns);
         setProjects(projectDetails.data?.singleProject);
 
-        console.log("Set projects:  ", projectDetails?.data.singleProject);
-      } else if (role === "specialUser") {
+        // console.log("Set projects:  ", projectDetails?.data.singleProject);
+      } else if (role === "admin") {
         const projectDetails = await axios.get(
-          `http://localhost:5000/special-user/detailed-view/project/${projectId}`,
+          `http://localhost:5000/admin/detailed-view/project/${projectId}`,
           {
             headers: {
               Authorization: `bearer ${token}`,

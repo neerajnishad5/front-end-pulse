@@ -2,7 +2,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // importing WAL picture
-import walPicture from "../images/testing.svg";
+import walPicture from "../images/walsave.svg";
 import "./Home.css";
 
 // exporting root layout component
@@ -11,16 +11,10 @@ export default function Home() {
     <>
       <div className="row home d-flex justify-content-around align-items-center p-3">
         <div className="col-sm-12 col-md-6 col-lg-4 ">
-          <h2
-            style={{ width: "530px", backgroundColor: "#4CA383" }}
-            className=" text-white text-center p-3 border border-dark"
-          >
-            WAL PULSE
-          </h2>
           <img
             src={walPicture}
             alt=""
-            className="img-responsive"
+            className="img-responsive image-margin"
             width={"530px"}
           />
         </div>

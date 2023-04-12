@@ -1,8 +1,12 @@
-.make-bg {
+/* .make-bg {
   background-color: #4da484;
   height: 90vh;
-}
+} */
 
 /* .home {
   background-color: #EDDEA4;
 } */
+
+.image-margin {
+  margin-top: -10px;
+}

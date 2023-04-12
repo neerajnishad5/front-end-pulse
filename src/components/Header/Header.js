@@ -20,19 +20,20 @@ export default function Header() {
   const logout = () => {
     // clear token from session storage
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("status")
 
     // dispatch clear state
     dispatch(clearState());
   };
   return (
     <nav className="header-area navbar ">
-      <div class="navbar-header">
+      <div className="navbar-header">
         <a href="/">
           <img
             width="130px"
-            className="navbar-brand bg-light ms-3"
+            className="navbar-brand bg-light ms-4"
             src={westagilelogo}
-            alt=""
+            alt="westAgileLab"
           />
         </a>
       </div>

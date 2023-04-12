@@ -17,7 +17,9 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   // on user submit details
   const onSubmit = async (user) => {
@@ -56,13 +58,13 @@ export default function Register() {
             style={{ width: "28rem" }}
             className="container shadow p-3 mb-5 bg-white "
           >
-            <h2>{message}</h2>
+            <h2 className="text-danger">{message}</h2>
             <h2 className="mb-2">Register User</h2>
             <form
               className="p-3 text-dark bg-light border "
               onSubmit={handleSubmit(onSubmit)}
             >
-              <div className="col ">
+              <div className="col">
                 <label className="d-flex mb-2" htmlFor="userId">
                   User ID
                 </label>
@@ -81,7 +83,7 @@ export default function Register() {
 
               {/* Name field */}
               <div className="col">
-                <label className="d-flex mb-2" htmlFor="username">
+                <label className="d-flex mb-2" htmlFor="name">
                   Name
                 </label>
                 <input
@@ -92,7 +94,7 @@ export default function Register() {
                   })}
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.username?.type === 'required' && (
+                {errors.name?.type === "required" && (
                   <span className="text-danger">Username is required</span>
                 )}
               </div>
@@ -104,18 +106,16 @@ export default function Register() {
                 </label>
                 <input
                   name="email"
+                  type="email"
+                  id="email"
                   className="form-control"
                   {...register("email", {
                     required: true,
-                    // pattern: {
-                    //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    //   message: "Invalid email address!",
-                    // },
                   })}
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.email?.type === 'required' && (
+                {errors.email?.type === "required" && (
                   <span className="text-danger">Email is required</span>
                 )}
               </div>
@@ -133,7 +133,7 @@ export default function Register() {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.password?.type === 'required' && (
+                {errors.password?.type === "required" && (
                   <span className="text-danger">Password is required</span>
                 )}
               </div>

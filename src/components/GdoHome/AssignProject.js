@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 // import { useSelector } from "react-redux";
 import assignButton from "../images/assign.svg";
 
-export default function AssignProject({ getProjects }) {
+export default function AssignProject({ getProjects, projects }) {
   const [showModal, setShowModal] = useState(false);
 
   // for opening and closing on model
@@ -21,6 +21,8 @@ export default function AssignProject({ getProjects }) {
   const editModal = () => {
     openModal();
   };
+
+  // console.log(projects[1].projectId);
 
   // react hook form
   const {
@@ -102,13 +104,30 @@ export default function AssignProject({ getProjects }) {
 
               <div className="col mt-2">
                 <label htmlFor="projectId">Project ID</label>
-                <input
+
+                <select
+                  {...register("projectId", { required: true })}
+                  name="projectId"
+                  id="projectId"
+                  className="form-control"
+                >
+                  <option disabled selected>
+                    -- Select ID --
+                  </option>
+                  {projects.map((proj, index) => {
+                    <option key={index} value={proj.projectId}>
+                      {proj.projectId}
+                    </option>;
+                  })}
+                </select>
+
+                {/* <input
                   type="number"
                   className="form-control"
                   {...register("projectId", {
                     required: true,
                   })}
-                />
+                /> */}
 
                 {/* errors will return when field validation fails  */}
                 {errors.projectId?.type === "required" && (

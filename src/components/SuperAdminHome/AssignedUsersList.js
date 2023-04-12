@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import assignButton from "../images/assignRole.svg";
 
 export default function AssignedUsersList() {
-  const [users, setUsers] = useState([]); 
+  const [users, setUsers] = useState([]);
   const data = useSelector((state) => state.login);
   const [name, setName] = useState("");
 
@@ -19,7 +19,7 @@ export default function AssignedUsersList() {
   const closeModal = () => setShowModal(false);
 
   const {
-    register, 
+    register,
     getValues,
     setValue,
     formState: { errors },
@@ -40,7 +40,7 @@ export default function AssignedUsersList() {
       }
     );
     // console.log("payload data: ", userList.data.payload);
-    
+
     setUsers(userList.data.payload);
     setName(data.userObj.name);
   };
@@ -73,7 +73,7 @@ export default function AssignedUsersList() {
   };
 
   const editModal = (index) => {
-    openModal(); 
+    openModal();
 
     setValue("userId", users[index].userId);
     // setValue("role", array[index].role);
@@ -93,10 +93,7 @@ export default function AssignedUsersList() {
               Users List
             </h2>
 
-            <div
-              style={{ backgroundcolor: "#FCAB10" }}
-              className="table-responsive"
-            >
+            <div className="table-responsive container">
               <table className="table table-hover table-striped border ms-4 me-4 shadow p-3 mb-5 rounded">
                 <thead>
                   <tr>

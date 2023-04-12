@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import "./ProjectManagerHome.css";
 import RaiseProjectConcern from "./RaiseProjectConcern";
 import RaiseProjectUpdate from "./RaiseProjectUpdate";
 import detailButton from "../images/details.svg";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function ProjectManagerHome() {
   // get data from store
@@ -55,14 +55,15 @@ export default function ProjectManagerHome() {
   // useNavigate hook to navigate to detailed projects
   const navigate = useNavigate();
 
+  // detailed view route
   const navigateToDetailedView = (projectId) => {
     navigate(`project-details/${projectId}`);
   };
 
   // useEffect get all data from projects TABLE
   useEffect(() => {
-    getProjectList();
     setManagerName(data.userObj.name);
+    getProjectList();
   }, []);
 
   return (
