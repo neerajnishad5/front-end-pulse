@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // importing WAL picture
 import walPicture from "../images/walsave.svg";
+
+// importing css for homejs
 import "./Home.css";
 
 // exporting root layout component
@@ -13,7 +15,7 @@ export default function Home() {
         <div className="col-sm-12 col-md-6 col-lg-4 ">
           <img
             src={walPicture}
-            alt=""
+            alt="wal picture"
             className="img-responsive image-margin"
             width={"530px"}
           />

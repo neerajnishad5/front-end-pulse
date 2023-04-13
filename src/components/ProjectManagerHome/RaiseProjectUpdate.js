@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import createButton from "../images/create.svg";
+import { useSelector } from "react-redux";
 
 export default function RaiseProjectUpdate({
   managerName,
@@ -16,6 +17,10 @@ export default function RaiseProjectUpdate({
   setUpdateMsg,
 }) {
   const token = sessionStorage.getItem("token");
+  const data = useSelector((state) => state.login);
+  const projectManagerId = data.userObj.userId;
+
+  console.log(projectManagerId);
 
   // console.log("token from projectmanager", token);
 
@@ -52,6 +57,7 @@ export default function RaiseProjectUpdate({
     const projectId = postUpdate.projectId;
 
     postUpdate.updateDate = new Date().toJSON().slice(0, 10);
+    postUpdate.projectManager = projectManagerId;
 
     // make http put req
 
@@ -190,24 +196,6 @@ export default function RaiseProjectUpdate({
                   {errors.projectFitnessIndicator?.type === "required" && (
                     <span className="text-danger">
                       Project Fitness Indicator is required
-                    </span>
-                  )}
-                </div>
-
-                <div className="col">
-                  <label htmlFor="projectManager">Project Manager ID</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    {...register("projectManager", {
-                      required: true,
-                    })}
-                  />
-
-                  {/* errors will return when field validation fails  */}
-                  {errors.projectManager?.type === "required" && (
-                    <span className="text-danger">
-                      Project Manager is required
                     </span>
                   )}
                 </div>

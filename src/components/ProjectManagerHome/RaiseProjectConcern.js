@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import createButton from "../images/create.svg";
+import { useSelector } from "react-redux";
 
 export default function RaiseProjectConcern() {
   const [showModal2, setShowModal2] = useState(false);
@@ -16,6 +17,9 @@ export default function RaiseProjectConcern() {
   const closeModal2 = () => setShowModal2(false);
 
   const token = sessionStorage.getItem("token");
+  const data = useSelector((state) => state.login);
+  const projectManagerId = data.userObj.userId;
+  const projectManagerName = data.userObj.name;
 
   const {
     register,
@@ -38,6 +42,8 @@ export default function RaiseProjectConcern() {
     const postConcern = getValues();
 
     postConcern.raisedOn = new Date().toJSON().slice(0, 10);
+    postConcern.projectManager = projectManagerId;
+    postConcern.raisedBy = projectManagerName;
 
     console.log("log from project concern: ", postConcern);
 
@@ -116,25 +122,6 @@ export default function RaiseProjectConcern() {
                   <span className="text-danger">
                     Concern Description is required
                   </span>
-                )}
-              </div>
-
-              <div className="col">
-                <label className="mt-2" htmlFor="raisedBy">
-                  Raised by
-                </label>
-                <input
-                  name="raisedBy"
-                  type="text"
-                  className="form-control"
-                  {...register("raisedBy", {
-                    required: true,
-                  })}
-                />
-
-                {/* errors will return when field validation fails  */}
-                {errors.raisedBy?.type === "required" && (
-                  <span className="text-danger">Raised by is required</span>
                 )}
               </div>
 
@@ -233,27 +220,6 @@ export default function RaiseProjectConcern() {
                 {errors.concernMitigationDate?.type === "required" && (
                   <span className="text-danger">
                     Concern Mitigation date is required
-                  </span>
-                )}
-              </div>
-
-              <div className="col">
-                <label className="mt-2" htmlFor="projectManager">
-                  Project Manager ID
-                </label>
-                <input
-                  type="number"
-                  name="projectManager"
-                  className="form-control"
-                  {...register("projectManager", {
-                    required: true,
-                  })}
-                />
-
-                {/* errors will return when field validation fails  */}
-                {errors.projectManager?.type === "required" && (
-                  <span className="text-danger">
-                    Project Manager is required
                   </span>
                 )}
               </div>
