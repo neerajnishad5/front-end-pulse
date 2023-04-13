@@ -7,6 +7,9 @@ import axios from "axios";
 import "./ProjectDetails.css";
 import Indicator from "./Indicator";
 import deleteButton from "../images/delete.svg";
+import green from "../images/green.svg";
+import amber from "../images/amber.svg";
+import red from "../images/red.svg";
 
 export default function ProjectDetails() {
   // gettting user from store
@@ -213,17 +216,23 @@ export default function ProjectDetails() {
 
       <div>
         <h2>Project Updates</h2>
-        {projectUpdates?.length > 0 && (
+        {projectUpdates?.length === 0 ? (
+          <div className="bg-dark p-2">
+            <h3 className="text-white">No updates raised!</h3>
+          </div>
+        ) : (
           <div className="table-responsive">
             <table className="table table-hover table-striped border">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Project Fitness Indicator</th>
-                  <th scope="col">Project ID</th>
                   <th scope="col">Project Manager</th>
-                  <th scope="col">Project Status</th>
                   <th scope="col">Update Date</th>
+                  <th scope="col">Project Status</th>
+                  <th scope="col">Schedule Status</th>
+                  <th scope="col">Resourcing Status</th>
+                  <th scope="col">Quality Status</th>
+                  <th scope="col">Waiting for Client</th>
                 </tr>
               </thead>
 
@@ -232,11 +241,55 @@ export default function ProjectDetails() {
                   return (
                     <tr key={index}>
                       <td>{update.id}</td>
-                      <td>{update.projectFitnessIndicator}</td>
-                      <td>{update.projectId}</td>
                       <td>{update.projectManager}</td>
-                      <td>{update.projectStatus}</td>
                       <td>{update.updateDate}</td>
+                      <td>{update.projectStatus}</td>
+                      <td>
+                        {update.scheduleStatus === "g" ? (
+                          <img width="25px" src={green} />
+                        ) : (
+                          <>
+                            {update.scheduleStatus === "a" ? (
+                              <img width="25px" src={amber} />
+                            ) : update.scheduleStatus === "r" ? (
+                              <img width="25px" src={red} />
+                            ) : (
+                              <p>null</p>
+                            )}
+                          </>
+                        )}
+                      </td>
+                      <td>
+                        {update.resourcingStatus === "g" ? (
+                          <img width="25px" src={green} />
+                        ) : (
+                          <>
+                            {update.resourcingStatus === "a" ? (
+                              <img width="25px" src={amber} />
+                            ) : update.resourcingStatus === "r" ? (
+                              <img width="25px" src={red} />
+                            ) : (
+                              <p>null</p>
+                            )}
+                          </>
+                        )}
+                      </td>
+                      <td>
+                        {update.qualityStatus === "g" ? (
+                          <img width="25px" src={green} />
+                        ) : (
+                          <>
+                            {update.qualityStatus === "a" ? (
+                              <img width="25px" src={amber} />
+                            ) : update.qualityStatus === "r" ? (
+                              <img width="25px" src={red} />
+                            ) : (
+                              <p>null</p>
+                            )}
+                          </>
+                        )}
+                      </td>
+                      <td>{update.waitingForClient ? "Yes" : "No"}</td>
                     </tr>
                   );
                 })}
@@ -246,10 +299,14 @@ export default function ProjectDetails() {
         )}
       </div>
 
-      <div className="project-team-composition">
+      <div className="project-team-composition mt-2">
         <div>
           <h2>Project Team Composition</h2>
-          {projectTeamComposition?.length > 0 && (
+          {projectTeamComposition?.length === 0 ? (
+            <div className="bg-dark p-2">
+              <h3 className="text-white">No team members exist!</h3>
+            </div>
+          ) : (
             <div className="table-responsive">
               <table className="table table-hover table-striped border  ">
                 <thead>
@@ -293,9 +350,13 @@ export default function ProjectDetails() {
           )}
         </div>
 
-        <div className="project-concerns ">
+        <div className="project-concerns mt-2">
           <h2>Project Concerns</h2>
-          {projectConcerns?.length > 0 && (
+          {projectConcerns?.length === 0 ? (
+            <div className="bg-dark p-2">
+              <h3 className="text-white">No concerns raised!</h3>
+            </div>
+          ) : (
             <div className="container table-responsive">
               <table className="table table-hover table-striped border ">
                 <thead>

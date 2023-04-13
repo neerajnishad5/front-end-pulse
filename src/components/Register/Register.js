@@ -56,10 +56,10 @@ export default function Register() {
         <div>
           <div
             style={{ width: "28rem" }}
-            className="container shadow p-3 mb-5 bg-white "
+            className="container shadow p-3 mb-5 bg-white"
           >
             <h2 className="text-danger">{message}</h2>
-            <h2 className="mb-2">Register User</h2>
+            <h2 className="mb-2">Register</h2>
             <form
               className="p-3 text-dark bg-light border "
               onSubmit={handleSubmit(onSubmit)}

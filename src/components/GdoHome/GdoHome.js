@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState, useEffect } from "react"; 
-import {   useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./GdoHome.css";
 import RaiseResourcingRequest from "./RaiseResourcingRequest";
@@ -13,7 +13,7 @@ export default function GdoHome() {
   const data = useSelector((state) => state.login);
   const [projects, setProjects] = useState([]);
 
-  const gdoId = data.userObj.userId; 
+  const gdoId = data.userObj.userId;
   // states for modal
 
   console.log("data in gdohome", data);
@@ -63,7 +63,11 @@ export default function GdoHome() {
       </div>
 
       <div>
-        {projects?.length > 0 && (
+        {projects?.length === 0 ? (
+          <div className="bg-dark">
+            <h3 className="text-white">No projects under GDO!</h3>
+          </div>
+        ) : (
           <div className="table-responsive">
             <h2 className="text-dark w-33 p-3 rounded">Projects Under GDO</h2>
             <table className="table  table-striped border ms-4 me-4">

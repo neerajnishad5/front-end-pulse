@@ -123,48 +123,18 @@ export default function RaiseProjectUpdate({
                     <span className="text-danger">Project ID is required</span>
                   )}
                 </div>
-
-                <div className="col">
-                  <label htmlFor="clientAccountManager">
-                    Client Account Manager
-                  </label>
-                  <input
-                    name="clientAccountManager"
-                    type="text"
-                    className="form-control"
-                    {...register("clientAccountManager", {
-                      required: true,
-                    })}
-                  />
-
-                  {/* errors will return when field validation fails  */}
-                  {errors.clientAccountManager?.type === "required" && (
-                    <span className="text-danger">
-                      Client Account Manager is required
-                    </span>
-                  )}
-                </div>
-
                 <div className="col">
                   <label htmlFor="projectStatus">Project Status</label>
 
-                  <select
-                    {...register("projectStatus", { required: true })}
+                  <input
                     name="projectStatus"
+                    type="text"
                     id="projectStatus"
                     className="form-control"
-                  >
-                    <option value="" selected disabled>
-                      -- Select status --
-                    </option>
-                    <option value="Sales">Sales</option>
-                    <option value="Pre-Sales">Pre-Sales</option>
-                    <option value="Client sign off">Client sign off</option>
-                    <option value="In progress">In progress</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Paused">Paused</option>
-                    <option value="Deferred">Deferred</option>
-                  </select>
+                    {...register("projectStatus", {
+                      required: true,
+                    })}
+                  />
 
                   {/* errors will return when field validation fails  */}
                   {errors.projectStatus?.type === "required" && (
@@ -173,29 +143,96 @@ export default function RaiseProjectUpdate({
                     </span>
                   )}
                 </div>
-
                 <div className="col">
-                  <label htmlFor="projectFitnessIndicator">
-                    Project Fitness Indicator
-                  </label>
+                  <label htmlFor="scheduleStatus">Schedule Status</label>
 
                   <select
-                    {...register("projectFitnessIndicator", { required: true })}
-                    name="projectFitnessIndicator"
-                    id="projectFitnessIndicator"
+                    {...register("scheduleStatus", { required: true })}
+                    name="scheduleStatus"
+                    id="scheduleStatus"
                     className="form-control"
                   >
-                    <option value="" selected disabled>
-                      -- Select fitness --
+                    <option disabled selected>
+                      -- Select status --
                     </option>
                     <option value="g">Green</option>
                     <option value="a">Amber</option>
                     <option value="r">Red</option>
                   </select>
-                  {/* errors will return when field validation fails  */}
-                  {errors.projectFitnessIndicator?.type === "required" && (
+
+                  {errors.scheduleStatus?.type === "required" && (
                     <span className="text-danger">
-                      Project Fitness Indicator is required
+                      Schedule Status is required
+                    </span>
+                  )}
+                </div>
+                <div className="col">
+                  <label htmlFor="resourcingStatus">Resourcing Status</label>
+
+                  <select
+                    {...register("resourcingStatus", { required: true })}
+                    name="resourcingStatus"
+                    id="resourcingStatus"
+                    className="form-control"
+                  >
+                    <option disabled selected>
+                      -- Select status --
+                    </option>
+                    <option value="g">Green</option>
+                    <option value="a">Amber</option>
+                    <option value="r">Red</option>
+                  </select>
+
+                  {errors.resourcingStatus?.type === "required" && (
+                    <span className="text-danger">
+                      Resourcing Status is required
+                    </span>
+                  )}
+                </div>
+
+                <div className="col">
+                  <label htmlFor="qualityStatus">Quality Status</label>
+
+                  <select
+                    {...register("qualityStatus", { required: true })}
+                    name="qualityStatus"
+                    id="qualityStatus"
+                    className="form-control"
+                  >
+                    <option disabled selected>
+                      -- Select status --
+                    </option>
+                    <option value="g">Green</option>
+                    <option value="a">Amber</option>
+                    <option value="r">Red</option>
+                  </select>
+
+                  {errors.qualityStatus?.type === "required" && (
+                    <span className="text-danger">
+                      Schedule Status is required
+                    </span>
+                  )}
+                </div>
+
+                <div className="col">
+                  <label htmlFor="waitingForClient">Waiting For Client</label>
+
+                  <select
+                    {...register("waitingForClient", { required: true })}
+                    name="waitingForClient"
+                    id="waitingForClient"
+                    className="form-control"
+                  >
+                    <option disabled selected>
+                      -- Select status --
+                    </option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+
+                  {errors.scheduleStatus?.type === "required" && (
+                    <span className="text-danger">
+                      Schedule Status is required
                     </span>
                   )}
                 </div>

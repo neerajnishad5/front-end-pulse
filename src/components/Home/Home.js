@@ -23,10 +23,10 @@ export default function Home() {
         <div className="col-sm-12 col-md-6 col-lg-4 ">
           <p className="display-6">
             WAL Pulse is a tool developed and designed to make the process of
-            maintaining projects and managing projects, based on the pariticular
+            maintaining and managing projects, based on the pariticular
             roles, smooth and simpler.
             <b> Project Managers, Super Admin, GDO Heads and Admin </b>
-            who are able to login and perform specific assignments.
+            are able to login and perform specific assignments.
           </p>
         </div>
       </div>

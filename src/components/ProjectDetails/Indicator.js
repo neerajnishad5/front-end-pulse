@@ -20,20 +20,19 @@ export default function Indicator({
                 Fitness indicator shows the status of a project
               </p>
 
-              {projectUpdates.at(-1)?.projectFitnessIndicator === "g" ? (
+              {projectUpdates.at(-1)?.qualityStatus === "g" ? (
                 <div>
                   <img width="71px" src={green} alt="" />{" "}
                 </div>
               ) : (
                 <>
-                  {projectUpdates.at(-1)?.projectFitnessIndicator === "a" ? (
+                  {projectUpdates.at(-1)?.qualityStatus === "a" ? (
                     <div>
                       <img width="71px" src={amber} alt="" />
                     </div>
                   ) : (
                     <>
-                      {projectUpdates.at(-1)?.projectFitnessIndicator ===
-                      "r" ? (
+                      {projectUpdates.at(-1)?.qualityStatus === "r" ? (
                         <div>
                           <img width="71px" src={red} alt="" />
                         </div>
