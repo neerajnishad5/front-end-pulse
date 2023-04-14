@@ -11,6 +11,7 @@ import image from "../images/register.svg";
 export default function Register() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   // const [isHome, setIsHome] = useState(false);
 
   const {
@@ -24,8 +25,7 @@ export default function Register() {
   // on user submit details
   const onSubmit = async (user) => {
     try {
-      // user from register
-      console.log("user from registereere: ", user);
+      setIsLoading(true);
 
       let res = await axios.post("http://localhost:5000/user/register", user);
       console.log("res in register: ", res);
@@ -45,11 +45,21 @@ export default function Register() {
       console.log("error: ", error);
       console.log("Internal error: ", error.ua.response.data.Message);
     }
+
+    setIsLoading(false);
   };
 
   const navigateToLogin = () => {
     navigate("/login");
   };
+
+  if (isLoading)
+  return (
+    <div class="spinner-border text-success" role="status">
+      <span class="sr-only"></span>
+    </div>
+  );
+
   return (
     <div className="row d-flex background-this">
       <div className="col">

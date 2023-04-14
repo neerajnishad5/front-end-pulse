@@ -19,11 +19,11 @@ export default function Login() {
   // initializing navigate
   const navigate = useNavigate();
 
-  // for user role not defined
-
+  // states
   const [wrongPassword, setWrongPassword] = useState("");
   const [assignStatus, setassignStatus] = useState("");
   const [notRegistered, setNotRegistered] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -41,11 +41,10 @@ export default function Login() {
   // on user submit details
   const onSubmit = async (user) => {
     try {
-      // user from form
-      // console.log(user);
-
       // dispatching user to store
       dispatch(userLogin(user));
+
+      setIsLoading(true);
 
       // making login request
       let res = await axios.post("http://localhost:5000/user/login", user);
@@ -81,7 +80,15 @@ export default function Login() {
       setWrongPassword(error.response.data?.Message);
       console.log("error: ", error);
     }
+    setIsLoading(false);
   };
+
+  if (isLoading)
+    return (
+      <div class="spinner-border text-success" role="status">
+        <span class="sr-only"></span>
+      </div>
+    );
 
   // returning react element
   return (
