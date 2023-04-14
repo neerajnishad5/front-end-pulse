@@ -27,9 +27,7 @@ export default function AssignProject({ getProjects, projects }) {
   // react hook form
   const {
     register,
-
     getValues,
-
     reset,
     formState: { errors },
   } = useForm({
@@ -68,7 +66,7 @@ export default function AssignProject({ getProjects, projects }) {
   };
 
   return (
-    <div>
+    < >
       <Card className="shadow p-3 mb-5 color-this rounded">
         <Card.Body>
           <Card.Title>Assign project to employee</Card.Title>
@@ -295,6 +293,6 @@ export default function AssignProject({ getProjects, projects }) {
           </Modal.Footer>
         </Modal>
       </div>
-    </div>
+    </ >
   );
 }

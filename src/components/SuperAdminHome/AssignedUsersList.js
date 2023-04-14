@@ -84,7 +84,7 @@ export default function AssignedUsersList() {
   }, []);
 
   return (
-    <div>
+    <>
       <div className="table-responsive">
         {users?.length > 0 && (
           <div className="container">
@@ -191,6 +191,6 @@ export default function AssignedUsersList() {
           </Modal.Footer>
         </Modal>
       </div>
-    </div>
+    </>
   );
 }

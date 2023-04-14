@@ -8,12 +8,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function RootLayout() {
   return (
-    <div>
+    < >
       <Header />
       <div className="mt-5 rounded" style={{ minHeight: "50vh" }}>
         <Outlet />
       </div>
       <Footer />
-    </div>
+    </ >
   );
 }

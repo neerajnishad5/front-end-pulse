@@ -8,12 +8,10 @@ export default function ProjectsList() {
   // projects state
   const [projects, setProjects] = useState([]);
   const data = useSelector((state) => state.login);
-  console.log("project data: ",data);
+  console.log("project data: ", data);
 
   const token = sessionStorage.getItem("token");
   // console.log("Token from super admin: ", token);
-
-  
 
   const getProjects = async () => {
     // get users list from users table
@@ -37,9 +35,8 @@ export default function ProjectsList() {
     getProjects();
   }, []);
 
-
   return (
-    <div>
+    <>
       {projects > 0 && (
         <div>
           <h2>Users List</h2>
@@ -84,6 +81,6 @@ export default function ProjectsList() {
           </table>
         </div>
       )}
-    </div>
+    </>
   );
 }

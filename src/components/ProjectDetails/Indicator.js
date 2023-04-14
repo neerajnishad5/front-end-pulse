@@ -10,7 +10,7 @@ export default function Indicator({
   projectUpdates,
 }) {
   return (
-    <div>
+    < >
       <div className="row mb-3 mt-3">
         <div className="col col-sm-12 col-md-6 col-lg-4">
           <div className="card color-this shadow p-3 mb-5 ">
@@ -75,6 +75,6 @@ export default function Indicator({
           </div>
         </div>
       </div>
-    </div>
+    </ >
   );
 }

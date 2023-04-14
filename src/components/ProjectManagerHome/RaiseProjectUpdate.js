@@ -87,7 +87,7 @@ export default function RaiseProjectUpdate({
   };
 
   return (
-    <div>
+    < >
       <Card className="shadow p-3 mb-5 color-this rounded">
         <Card.Body>
           <Card.Title>Raise project update</Card.Title>
@@ -250,6 +250,6 @@ export default function RaiseProjectUpdate({
           </Modal>
         </div>
       </div>
-    </div>
+    </ >
   );
 }

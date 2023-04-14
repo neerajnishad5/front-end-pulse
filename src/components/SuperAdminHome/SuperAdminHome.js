@@ -11,13 +11,13 @@ export default function SuperAdminHome() {
   console.log("Token from super admin: ", token);
 
   return (
-    <div>
+    <>
       <div>
         <AssignedUsersList />
         {/* <UnassignedUsers /> */}
       </div>
 
       {/* <UnassignedUsers /> */}
-    </div>
+    </>
   );
 }

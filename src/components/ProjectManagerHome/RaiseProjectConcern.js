@@ -66,7 +66,7 @@ export default function RaiseProjectConcern() {
     }
   };
   return (
-    <div>
+    < >
       <div>
         <Card className="shadow p-3 mb-5 color-this rounded">
           <Card.Body>
@@ -236,6 +236,6 @@ export default function RaiseProjectConcern() {
           </Modal.Footer>
         </Modal>
       </div>
-    </div>
+    </ >
   );
 }

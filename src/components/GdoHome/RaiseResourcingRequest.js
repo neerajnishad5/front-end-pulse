@@ -57,7 +57,7 @@ export default function RaiseResourcingRequest({ show, setShow }) {
   };
 
   return (
-    <div>
+    < >
       <div>
         <Card className="shadow p-3 mb-5 color-this rounded">
           <Card.Body>
@@ -140,6 +140,6 @@ export default function RaiseResourcingRequest({ show, setShow }) {
           </Modal.Footer>
         </Modal>
       </div>
-    </div>
+    </ >
   );
 }

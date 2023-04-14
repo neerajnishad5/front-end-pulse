@@ -11,7 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function ErrorPage() {
   const navigate = useNavigate();
   return (
-    <div className="text-center ">
+    <>
+    <div className="text-center">
       <Header />
       <div className="row d-flex justify-content-center align-items-center">
         <h2 className="text-danger">Error occured</h2>
@@ -26,6 +27,6 @@ export default function ErrorPage() {
       <button onClick={() => navigate("/")} className="btn btn-dark btn-lg">
         Home
       </button>
-    </div>
+    </div></>
   );
 }

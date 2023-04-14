@@ -148,6 +148,20 @@ export default function ProjectDetails() {
     }
   };
 
+  // color for different statuses in project updates
+  const colorIndicator = (color) => {
+    if (color === "g") {
+      return <img width="25px" src={green} />;
+    } else if (color === "r") {
+      return <img width="25px" src={red} />;
+    } else if (color === "a") {
+      return <img width="25px" src={amber} />;
+    } else {
+      return <p>null</p>;
+    }
+  };
+
+  // useEffect hook to load project details once everything is loaded
   useEffect(() => {
     getProjectDetails(projectId);
   }, []);
@@ -244,51 +258,9 @@ export default function ProjectDetails() {
                       <td>{update.projectManager}</td>
                       <td>{update.updateDate}</td>
                       <td>{update.projectStatus}</td>
-                      <td>
-                        {update.scheduleStatus === "g" ? (
-                          <img width="25px" src={green} />
-                        ) : (
-                          <>
-                            {update.scheduleStatus === "a" ? (
-                              <img width="25px" src={amber} />
-                            ) : update.scheduleStatus === "r" ? (
-                              <img width="25px" src={red} />
-                            ) : (
-                              <p>null</p>
-                            )}
-                          </>
-                        )}
-                      </td>
-                      <td>
-                        {update.resourcingStatus === "g" ? (
-                          <img width="25px" src={green} />
-                        ) : (
-                          <>
-                            {update.resourcingStatus === "a" ? (
-                              <img width="25px" src={amber} />
-                            ) : update.resourcingStatus === "r" ? (
-                              <img width="25px" src={red} />
-                            ) : (
-                              <p>null</p>
-                            )}
-                          </>
-                        )}
-                      </td>
-                      <td>
-                        {update.qualityStatus === "g" ? (
-                          <img width="25px" src={green} />
-                        ) : (
-                          <>
-                            {update.qualityStatus === "a" ? (
-                              <img width="25px" src={amber} />
-                            ) : update.qualityStatus === "r" ? (
-                              <img width="25px" src={red} />
-                            ) : (
-                              <p>null</p>
-                            )}
-                          </>
-                        )}
-                      </td>
+                      <td>{colorIndicator(update.scheduleStatus)}</td>
+                      <td>{colorIndicator(update.resourcingStatus)}</td>
+                      <td>{colorIndicator(update.qualityStatus)}</td>
                       <td>{update.waitingForClient ? "Yes" : "No"}</td>
                     </tr>
                   );
