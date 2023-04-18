@@ -28,11 +28,14 @@ export default function AssignedUsersList() {
   const token = sessionStorage.getItem("token");
   console.log("Token from super admin: ", token);
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   // get all users
   const getUsers = async () => {
     // get users list from users table
     const userList = await axios.get(
-      "http://localhost:5000/super-admin/all-users",
+      `${SERVER_URL}/super-admin/all-users`,
       {
         headers: {
           Authorization: `BEARER ${token}`,
@@ -56,7 +59,7 @@ export default function AssignedUsersList() {
     // make http put req
 
     let res = await axios.put(
-      `http://localhost:5000/super-admin/assign-role`,
+      `${SERVER_URL}/super-admin/assign-role`,
       modifiedUser,
       {
         headers: {

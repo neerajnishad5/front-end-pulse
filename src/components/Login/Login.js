@@ -13,6 +13,10 @@ import image from "../images/loginpage.svg";
 
 // Login function
 export default function Login() {
+
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   // initializing dispatch
   const dispatch = useDispatch();
 
@@ -36,7 +40,7 @@ export default function Login() {
   const data = useSelector((state) => state.login);
   const role = data.userObj.role;
 
-  console.log("user obj from login: ", data);
+  // console.log("user obj from login: ", data);
 
   // on user submit details
   const onSubmit = async (user) => {
@@ -44,11 +48,13 @@ export default function Login() {
       // dispatching user to store
       dispatch(userLogin(user));
 
+      console.log("first", SERVER_URL);
+
       setIsLoading(true);
 
       // making login request
-      let res = await axios.post("http://localhost:5000/user/login", user);
-      console.log("res in Login: ", res);
+      let res = await axios.post(`${SERVER_URL}/user/login`, user);
+      // console.log("res in Login: ", res);
       if (res.data.Message === "User not found!") {
         setNotRegistered("User not registered!");
       }
@@ -85,8 +91,8 @@ export default function Login() {
 
   if (isLoading)
     return (
-      <div class="spinner-border text-success" role="status">
-        <span class="sr-only"></span>
+      <div className="spinner-border text-success" role="status">
+        <span className="sr-only"></span>
       </div>
     );
 

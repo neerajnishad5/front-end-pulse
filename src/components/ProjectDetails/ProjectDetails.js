@@ -28,6 +28,9 @@ export default function ProjectDetails() {
   const [detailedView, setDetailedView] = useState({});
   const [projectUpdates, setProjectUpdates] = useState([]);
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   // const userId = data.userObj.userId;
   const role = data.userObj.role;
 
@@ -38,7 +41,7 @@ export default function ProjectDetails() {
     try {
       if (role === "projectManager") {
         const projectDetails = await axios.get(
-          `http://localhost:5000/project-manager/detailed-project-view/project/${projectId}`,
+          `${SERVER_URL}/project-manager/detailed-project-view/project/${projectId}`,
           {
             headers: {
               Authorization: `bearer ${token}`,
@@ -60,7 +63,7 @@ export default function ProjectDetails() {
         // set project details
       } else if (role === "gdo") {
         const projectDetails = await axios.get(
-          `http://localhost:5000/gdo/gdoId/5/detailed-project-view/project/${projectId}`,
+          `${SERVER_URL}/gdo/gdoId/5/detailed-project-view/project/${projectId}`,
           {
             headers: {
               Authorization: `bearer ${token}`,
@@ -80,32 +83,31 @@ export default function ProjectDetails() {
         // console.log("Set projects:  ", projectDetails?.data.singleProject);
       } else if (role === "admin") {
         const projectDetails = await axios.get(
-          `http://localhost:5000/admin/detailed-view/project/${projectId}`,
+          `${SERVER_URL}/admin/detailed-view/project/${projectId}`,
           {
             headers: {
               Authorization: `bearer ${token}`,
             },
           }
         );
-        console.log("special user project details", projectDetails);
-        setProjectTeamComposition(
-          projectDetails.data.payload.projectTeamCompositions
-        );
+        // console.log("special user project details", projectDetails);
+        setProjectTeamComposition(projectDetails.data.payload.projectTeamCompositions);
         setProjectUpdates(projectDetails.data.payload.projectUpdates);
         setProjectConcerns(projectDetails.data.payload.projectConcerns);
-
         setProjects(projectDetails?.data.singleProject);
 
-        console.log("Length: ", projectDetails.data.singleProject.length);
+        // console.log("Length: ", projectDetails.data.singleProject.length);
       }
     } catch (error) {
       console.log("error in project details: ", error);
     }
   };
 
+
+  // function to delete employee
   const deleteEmployee = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/gdo/delete-member/${id}`, {
+      await axios.delete(`${SERVER_URL}/gdo/delete-member/${id}`, {
         headers: {
           Authorization: `bearer ${token}`,
         },
@@ -117,11 +119,13 @@ export default function ProjectDetails() {
     }
   };
 
+
+  // function to delete project concern
   const deleteProjectConcern = async (id) => {
     try {
       if (role === "projectManager") {
         await axios.delete(
-          `http://localhost:5000/project-manager/delete-project-concern/${id}`,
+          `${SERVER_URL}/project-manager/delete-project-concern/${id}`,
           {
             headers: {
               Authorization: `bearer ${token}`,
@@ -132,7 +136,7 @@ export default function ProjectDetails() {
         getProjectDetails(projectId);
       } else if (role === "gdo") {
         await axios.delete(
-          `http://localhost:5000/${role}/delete-project-concern/2`,
+          `${SERVER_URL}/${role}/delete-project-concern/2`,
           {
             headers: {
               Authorization: `bearer ${token}`,
@@ -148,7 +152,7 @@ export default function ProjectDetails() {
     }
   };
 
-  // color for different statuses in project updates
+  // color indicator for different statuses in project updates
   const colorIndicator = (color) => {
     if (color === "g") {
       return <img width="25px" src={green} />;

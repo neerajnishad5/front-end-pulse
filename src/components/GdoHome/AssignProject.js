@@ -18,6 +18,9 @@ export default function AssignProject({ getProjects, projects }) {
 
   const token = sessionStorage.getItem("token");
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   const editModal = () => {
     openModal();
   };
@@ -44,7 +47,7 @@ export default function AssignProject({ getProjects, projects }) {
 
     // make assign request here
     let res = await axios.post(
-      `http://localhost:5000/gdo/assign-project`,
+      `${SERVER_URL}/gdo/assign-project`,
       employeeToAssign,
       {
         headers: {

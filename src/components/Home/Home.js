@@ -21,7 +21,7 @@ export default function Home() {
           />
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 ">
-          <p className="display-6">
+          <p className="home-text">
             WAL Pulse is a tool developed and designed to make the process of
             maintaining and managing projects, based on the pariticular
             roles, smooth and simpler.

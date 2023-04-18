@@ -22,10 +22,14 @@ export default function AdminHome() {
   // special user ID
   const specialUserId = data.userObj.userId;
 
+
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   const getProjects = async () => {
     // get users list from users table
     const projectsList = await axios.get(
-      `http://localhost:5000/admin/all-projects`,
+      `${SERVER_URL}/admin/all-projects`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -45,7 +49,7 @@ export default function AdminHome() {
       // user from register
 
       let res = await axios.get(
-        "http://localhost:5000/admin/all-resource-requests",
+        "${SERVER_URL}/admin/all-resource-requests",
         {
           headers: {
             Authorization: `bearer ${token}`,
@@ -63,7 +67,7 @@ export default function AdminHome() {
   const deleteAProject = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/admin/delete-project/project/${id}`,
+        `${SERVER_URL}/admin/delete-project/project/${id}`,
         {
           headers: {
             Authorization: `bearer ${token}`,
@@ -81,7 +85,7 @@ export default function AdminHome() {
   const deleteResourceRequest = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/admin/delete-resource-request/${id}`,
+        `${SERVER_URL}/admin/delete-resource-request/${id}`,
         {
           headers: {
             Authorization: `bearer ${token}`,

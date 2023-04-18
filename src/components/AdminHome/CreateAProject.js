@@ -19,6 +19,9 @@ export default function CreateAProject({ getProjects }) {
   // getting token from session storage
   const token = sessionStorage.getItem("token");
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   const {
     register,
     handleSubmit,
@@ -39,7 +42,7 @@ export default function CreateAProject({ getProjects }) {
 
     try {
       let res = await axios.post(
-        `http://localhost:5000/admin/create-project`,
+        `${SERVER_URL}/admin/create-project`,
         projectInput,
         {
           headers: {

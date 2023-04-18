@@ -10,13 +10,16 @@ export default function ProjectsList() {
   const data = useSelector((state) => state.login);
   console.log("project data: ", data);
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   const token = sessionStorage.getItem("token");
   // console.log("Token from super admin: ", token);
 
   const getProjects = async () => {
     // get users list from users table
     const projectsList = await axios.get(
-      `http://localhost:5000/special-user/all-projects`,
+      `${SERVER_URL}/special-user/all-projects`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -24,6 +24,9 @@ export default function UpdateProject({ getProjects }) {
 
   const navigate = useNavigate();
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   console.log("Printing id:", projectId);
 
   const onSubmit = async (projectUpdate) => {
@@ -35,7 +38,7 @@ export default function UpdateProject({ getProjects }) {
 
     try {
       let res = await axios.put(
-        `http://localhost:5000/gdo/update-project/project/${projectId}`,
+        `${SERVER_URL}/gdo/update-project/project/${projectId}`,
         projectUpdate,
         {
           headers: {

@@ -33,6 +33,9 @@ export default function RaiseResourcingRequest({ show, setShow }) {
   const openModal2 = () => setShowModal2(true);
   const closeModal2 = () => setShowModal2(false);
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   const editModal = () => {
     openModal2();
   };
@@ -43,7 +46,7 @@ export default function RaiseResourcingRequest({ show, setShow }) {
     closeModal2();
     try {
       let res = await axios.post(
-        `http://localhost:5000/gdo/resource-request`,
+        `${SERVER_URL}/gdo/resource-request`,
         request,
         {
           headers: {

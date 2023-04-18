@@ -16,6 +16,9 @@ export default function ForgotPassword() {
   });
   const [message, setMessage] = useState("");
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   // on user submit details
   const onSubmit = async (email) => {
     try {
@@ -23,7 +26,7 @@ export default function ForgotPassword() {
       console.log("Logging mail", email);
 
       let res = await axios.post(
-        "http://localhost:5000/user/forgot-password",
+        `${SERVER_URL}/user/forgot-password`,
         email
       );
       console.log("Res in forgot pas: ", res);

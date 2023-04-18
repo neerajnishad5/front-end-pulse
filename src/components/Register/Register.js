@@ -22,12 +22,15 @@ export default function Register() {
     mode: "all",
   });
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
   // on user submit details
   const onSubmit = async (user) => {
     try {
       setIsLoading(true);
 
-      let res = await axios.post("http://localhost:5000/user/register", user);
+      let res = await axios.post(`${SERVER_URL}/user/register`, user);
       console.log("res in register: ", res);
 
       // make post requuest here
@@ -54,11 +57,11 @@ export default function Register() {
   };
 
   if (isLoading)
-  return (
-    <div class="spinner-border text-success" role="status">
-      <span class="sr-only"></span>
-    </div>
-  );
+    return (
+      <div class="spinner-border text-success" role="status">
+        <span class="sr-only"></span>
+      </div>
+    );
 
   return (
     <div className="row d-flex background-this">

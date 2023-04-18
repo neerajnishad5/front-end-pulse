@@ -17,6 +17,9 @@ export default function ResetPassword() {
   const [message, setMessage] = useState("");
   const { email, token } = useParams();
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   // initializin navigate
   const navigate = useNavigate();
 
@@ -27,7 +30,7 @@ export default function ResetPassword() {
 
     try {
       let res = await axios.put(
-        `http://localhost:5000/user/reset-password/${email}/${token}`,
+        `${SERVER_URL}/user/reset-password/${email}/${token}`,
         password
       );
       console.log("res in reset pass: ", res);

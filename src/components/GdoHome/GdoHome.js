@@ -18,13 +18,16 @@ export default function GdoHome() {
 
   console.log("data in gdohome", data);
 
+  // server url from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+
   const token = sessionStorage.getItem("token");
   // console.log("Token from super admin: ", token);
 
   const getProjects = async () => {
     // get users list from users table
     const projectsList = await axios.get(
-      `http://localhost:5000/gdo/${gdoId}/all-projects`,
+      `${SERVER_URL}/gdo/${gdoId}/all-projects`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
