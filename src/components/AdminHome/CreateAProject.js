@@ -20,7 +20,7 @@ export default function CreateAProject({ getProjects }) {
   const token = sessionStorage.getItem("token");
 
   // server url from env file
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   const {
     register,
@@ -57,6 +57,10 @@ export default function CreateAProject({ getProjects }) {
     }
   };
 
+  useEffect(() => {
+    document.title = "Create Project | PULSE";
+  }, []);
+
   return (
     <div className="card-color">
       <div>
@@ -91,7 +95,7 @@ export default function CreateAProject({ getProjects }) {
                   })}
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.projectId?.type === 'required' && (
+                {errors.projectId?.type === "required" && (
                   <span className="text-danger">Project ID is required</span>
                 )}
               </div>
@@ -107,7 +111,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectName?.type === 'required' && (
+                {errors.projectName?.type === "required" && (
                   <span className="text-danger">Project Name is required</span>
                 )}
               </div>
@@ -123,7 +127,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.clientName?.type === 'required' && (
+                {errors.clientName?.type === "required" && (
                   <span className="text-danger">Client Name is required</span>
                 )}
               </div>
@@ -141,7 +145,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.clientAccountManager?.type === 'required' && (
+                {errors.clientAccountManager?.type === "required" && (
                   <span className="text-danger">
                     Client Account Manager is required
                   </span>
@@ -169,7 +173,7 @@ export default function CreateAProject({ getProjects }) {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectStatus?.type === 'required' && (
+                {errors.projectStatus?.type === "required" && (
                   <span className="text-danger">
                     Project Status is required
                   </span>
@@ -185,7 +189,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectStartDate?.type === 'required' && (
+                {errors.projectStartDate?.type === "required" && (
                   <span className="text-danger">
                     Project Start Date is required
                   </span>
@@ -201,7 +205,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectEndDate?.type === 'required' && (
+                {errors.projectEndDate?.type === "required" && (
                   <span className="text-danger">
                     Project End Date is required
                   </span>
@@ -227,7 +231,7 @@ export default function CreateAProject({ getProjects }) {
                   <option value="r">Red</option>
                 </select>
                 {/* errors will return when field validation fails  */}
-                {errors.projectFitnessIndicator?.type === 'required' && (
+                {errors.projectFitnessIndicator?.type === "required" && (
                   <span className="text-danger">
                     Project Fitness Indicator is required
                   </span>
@@ -245,7 +249,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectDomain?.type === 'required' && (
+                {errors.projectDomain?.type === "required" && (
                   <span className="text-danger">
                     Project Domain is required
                   </span>
@@ -279,7 +283,7 @@ export default function CreateAProject({ getProjects }) {
                 </select>
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectType?.type === 'required' && (
+                {errors.projectType?.type === "required" && (
                   <span className="text-danger">Project Type is required</span>
                 )}
               </div>
@@ -295,7 +299,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.gdoId?.type === 'required' && (
+                {errors.gdoId?.type === "required" && (
                   <span className="text-danger">GDO ID is required</span>
                 )}
               </div>
@@ -312,7 +316,7 @@ export default function CreateAProject({ getProjects }) {
                 />
 
                 {/* errors will return when field validation fails  */}
-                {errors.projectManager?.type === 'required' && (
+                {errors.projectManager?.type === "required" && (
                   <span className="text-danger">
                     Project Manager ID is required
                   </span>

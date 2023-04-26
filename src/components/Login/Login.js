@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 // importing axios for making API requests
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../slices/loginSlice";
 
@@ -13,9 +13,8 @@ import image from "../images/loginpage.svg";
 
 // Login function
 export default function Login() {
-
   // server url from env file
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   // initializing dispatch
   const dispatch = useDispatch();
@@ -88,6 +87,9 @@ export default function Login() {
     }
     setIsLoading(false);
   };
+  useEffect(() => {
+    document.title = "Login | PULSE";
+  }, []);
 
   if (isLoading)
     return (
@@ -95,6 +97,9 @@ export default function Login() {
         <span className="sr-only"></span>
       </div>
     );
+
+
+   
 
   // returning react element
   return (

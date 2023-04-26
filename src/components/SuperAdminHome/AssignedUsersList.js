@@ -29,19 +29,16 @@ export default function AssignedUsersList() {
   console.log("Token from super admin: ", token);
 
   // server url from env file
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   // get all users
   const getUsers = async () => {
     // get users list from users table
-    const userList = await axios.get(
-      `${SERVER_URL}/super-admin/all-users`,
-      {
-        headers: {
-          Authorization: `BEARER ${token}`,
-        },
-      }
-    );
+    const userList = await axios.get(`${SERVER_URL}/super-admin/all-users`, {
+      headers: {
+        Authorization: `BEARER ${token}`,
+      },
+    });
     // console.log("payload data: ", userList.data.payload);
 
     setUsers(userList.data.payload);
@@ -84,6 +81,7 @@ export default function AssignedUsersList() {
 
   useEffect(() => {
     getUsers();
+    document.title = "Super Admin | HOME";
   }, []);
 
   return (
@@ -92,7 +90,10 @@ export default function AssignedUsersList() {
         {users?.length > 0 && (
           <div className="container">
             <h2>Welcome Super Admin {name}</h2>
-            <h2 className="bg-success w-25 d-flex justify-content-center mx-auto text-white p-2 mb-3 mt-3 rounded">
+            <h2
+              style={{ width: "25%" }}
+              className="bg-success d-flex justify-content-center mx-auto text-white p-2 mb-3 mt-3"
+            >
               Users List
             </h2>
 

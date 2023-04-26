@@ -22,20 +22,16 @@ export default function AdminHome() {
   // special user ID
   const specialUserId = data.userObj.userId;
 
-
   // server url from env file
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   const getProjects = async () => {
     // get users list from users table
-    const projectsList = await axios.get(
-      `${SERVER_URL}/admin/all-projects`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const projectsList = await axios.get(`${SERVER_URL}/admin/all-projects`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     console.log(projectsList.data.projects);
     setProjects(projectsList.data.projects);
@@ -48,14 +44,11 @@ export default function AdminHome() {
     try {
       // user from register
 
-      let res = await axios.get(
-        "${SERVER_URL}/admin/all-resource-requests",
-        {
-          headers: {
-            Authorization: `bearer ${token}`,
-          },
-        }
-      );
+      let res = await axios.get("${SERVER_URL}/admin/all-resource-requests", {
+        headers: {
+          Authorization: `bearer ${token}`,
+        },
+      });
 
       // console.log("res from get resource req: ", res);
       setResourceRequests(res.data.payload);
@@ -101,10 +94,11 @@ export default function AdminHome() {
 
   // useEffect get all data from projects TABLE
   useEffect(() => {
-    // console.log("get projects called!");
+  // console.log("get projects called!");
     getProjects();
     getResourceRequest();
     deleteAProject();
+    document.title = "Admin | HOME";
   }, []);
 
   return (
@@ -121,7 +115,7 @@ export default function AdminHome() {
         </div>
         <div>
           <ResourceRequestList
-            resourceRequests={resourceRequests}             
+            resourceRequests={resourceRequests}
             deleteResourceRequest={deleteResourceRequest}
           />
         </div>

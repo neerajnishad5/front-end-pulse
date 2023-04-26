@@ -49,6 +49,7 @@ export default function GdoHome() {
   // useEffect get all data from projects TABLE
   useEffect(() => {
     getProjects();
+    document.title = 'GDO Admin | HOME'
   }, []);
   // return react element
   return (

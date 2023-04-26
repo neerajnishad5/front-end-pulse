@@ -2,7 +2,7 @@ import "./Register.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // importing bootstrap from node_modules
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -56,12 +56,17 @@ export default function Register() {
     navigate("/login");
   };
 
-  if (isLoading)
+  useEffect(() => {
+    document.title = "Register | PULSE";
+  }, []);
+
+  if (isLoading) {
     return (
       <div class="spinner-border text-success" role="status">
         <span class="sr-only"></span>
       </div>
     );
+  }
 
   return (
     <div className="row d-flex background-this">

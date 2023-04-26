@@ -64,6 +64,7 @@ export default function ProjectManagerHome() {
   useEffect(() => {
     setManagerName(data.userObj.name);
     getProjectList();
+    document.title = "Project Manager | HOME";
   }, []);
 
   return (

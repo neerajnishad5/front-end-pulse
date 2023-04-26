@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import UnassignedUsers from "./UnassignedUsers";
-import AssignedUsersList from "./AssignedUsersList";
+import AssignedUsersList from "./AssignedUsersList"; 
 
 export default function SuperAdminHome() {
   const data = useSelector((state) => state.login);
@@ -9,6 +9,8 @@ export default function SuperAdminHome() {
 
   const token = sessionStorage.getItem("token");
   console.log("Token from super admin: ", token);
+
+  
 
   return (
     <>
