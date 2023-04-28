@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import assignButton from "../images/assignRole.svg"; 
+import assignButton from "../images/assignRole.svg";
 
 // export function
 export default function AssignedUsersList(props) {
@@ -94,8 +94,19 @@ export default function AssignedUsersList(props) {
 
   return (
     <>
-      <div className="table-responsive">
-        {filterData?.length > 0 && (
+      <div className="table-responsive d-flex justify-content-center ">
+        {filterData?.length === 0 ? (
+          <div
+            style={{
+              height: "450px",
+              width: "80%",
+              backgroundColor: "#FEE1C7",
+            }}
+            className="d-flex justify-content-center align-items-center"
+          >
+            <h1 className="text-danger">No such user exist!</h1>
+          </div>
+        ) : (
           <div className="container">
             <h2>Welcome Super Admin {name}</h2>
             <h2

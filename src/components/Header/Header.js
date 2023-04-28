@@ -8,7 +8,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearState } from "../../slices/loginSlice";
 import westagilelogo from "../images/navbarLogo.png";
-import SearchBar from "./SearchBar";
 
 export default function Header() {
   // initialize dispatch function

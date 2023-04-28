@@ -20,3 +20,9 @@ thead {
   background-color: #FEE1C7;
   padding: 20px;
 }
+
+/* pseudo element */
+::selection {
+  color: white;
+  background: #0c7343;
+}

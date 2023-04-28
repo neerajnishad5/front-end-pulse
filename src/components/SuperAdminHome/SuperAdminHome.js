@@ -16,7 +16,12 @@ export default function SuperAdminHome() {
 
   return (
     <>
-      <div className="input-group d-flex justify-content-center mb-3">
+      <div
+        style={{
+          backgroundColor: "#FEE1C7",
+        }}
+        className="input-group d-flex justify-content-center mb-3 p-3"
+      >
         <div className="form-outline">
           <input
             type="search"
