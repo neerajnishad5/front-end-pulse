@@ -8,6 +8,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearState } from "../../slices/loginSlice";
 import westagilelogo from "../images/navbarLogo.png";
+import SearchBar from "./SearchBar";
 
 export default function Header() {
   // initialize dispatch function
@@ -20,7 +21,7 @@ export default function Header() {
   const logout = () => {
     // clear token from session storage
     sessionStorage.removeItem("token");
-    sessionStorage.removeItem("status")
+    sessionStorage.removeItem("status");
 
     // dispatch clear state
     dispatch(clearState());
@@ -38,7 +39,7 @@ export default function Header() {
         </a>
       </div>
       {data.status === "success" ? (
-        <ul className="nav navbar-nav justify-content-end p-3 header display">
+        <ul className="nav p-3 header display">
           <li className="nav-item me-1">
             <p className="text-white nav-item">Welcome, {data.userObj.email}</p>
           </li>
@@ -56,8 +57,8 @@ export default function Header() {
           </li>
         </ul>
       ) : (
-        <ul className="nav justify-content-end p-3 header display">
-          <li className="nav-item ">
+        <ul className="nav header display">
+          <li className="nav-item">
             <NavLink
               className={({ isActive }) =>
                 isActive ? "active nav-link" : "inactive nav-link"

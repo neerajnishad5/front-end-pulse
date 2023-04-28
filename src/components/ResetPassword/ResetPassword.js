@@ -6,6 +6,7 @@ import { useState } from "react";
 // importing bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 
+// exporting resetPassword element
 export default function ResetPassword() {
   const {
     register,
@@ -17,10 +18,10 @@ export default function ResetPassword() {
   const [message, setMessage] = useState("");
   const { email, token } = useParams();
 
-  // server url from env file
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+  // server URL from env file
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-  // initializin navigate
+  // initializing navigate
   const navigate = useNavigate();
 
   // on user submit details
@@ -36,7 +37,7 @@ export default function ResetPassword() {
       console.log("res in reset pass: ", res);
       setMessage("Password reset successfully!");
 
-      // make post requuest here
+      // make post request here
       if (res.status === 200) {
         setTimeout(() => {
           navigate("/login");
@@ -59,8 +60,6 @@ export default function ResetPassword() {
         className="p-3 text-dark"
         method="put"
       >
-        {/* register your input into the hook by invoking the "register" function */}
-
         <div className="col">
           <label className="d-flex mb-2" htmlFor="password">
             Password
@@ -73,7 +72,7 @@ export default function ResetPassword() {
             })}
           />
           {/* errors will return when field validation fails  */}
-          {errors.password && (
+          {errors.password?.type === "required" && (
             <span className="text-danger">Password is required</span>
           )}
         </div>

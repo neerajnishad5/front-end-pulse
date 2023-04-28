@@ -4,14 +4,13 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import assignButton from "../images/assignRole.svg";
+import assignButton from "../images/assignRole.svg"; 
 
-export default function AssignedUsersList() {
+// export function
+export default function AssignedUsersList(props) {
   const [users, setUsers] = useState([]);
   const data = useSelector((state) => state.login);
   const [name, setName] = useState("");
-
-  console.log("data state from super admin: ", data);
 
   const [showModal, setShowModal] = useState(false);
   // for opening and closing on model
@@ -26,7 +25,6 @@ export default function AssignedUsersList() {
   } = useForm();
 
   const token = sessionStorage.getItem("token");
-  console.log("Token from super admin: ", token);
 
   // server url from env file
   const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -39,7 +37,6 @@ export default function AssignedUsersList() {
         Authorization: `BEARER ${token}`,
       },
     });
-    // console.log("payload data: ", userList.data.payload);
 
     setUsers(userList.data.payload);
     setName(data.userObj.name);
@@ -50,8 +47,6 @@ export default function AssignedUsersList() {
 
     // calling getValues from react-hook-form
     let modifiedUser = getValues();
-
-    // console.log("modified user: ", modifiedUser);
 
     // make http put req
 
@@ -79,6 +74,19 @@ export default function AssignedUsersList() {
     // setValue("role", array[index].role);
   };
 
+  // filtering data based on input
+  const filterData = users.filter((user) => {
+    if (props.inputText.length === 0) {
+      return user;
+    }
+    // return item which contains input
+    else {
+      if (user.name.toLowerCase().includes(props.inputText)) {
+        return user;
+      }
+    }
+  });
+
   useEffect(() => {
     getUsers();
     document.title = "Super Admin | HOME";
@@ -87,7 +95,7 @@ export default function AssignedUsersList() {
   return (
     <>
       <div className="table-responsive">
-        {users?.length > 0 && (
+        {filterData?.length > 0 && (
           <div className="container">
             <h2>Welcome Super Admin {name}</h2>
             <h2
@@ -110,7 +118,7 @@ export default function AssignedUsersList() {
                 </thead>
 
                 <tbody>
-                  {users.map((user, index) => {
+                  {filterData.map((user, index) => {
                     return (
                       <tr key={index}>
                         <td>{user.userId}</td>

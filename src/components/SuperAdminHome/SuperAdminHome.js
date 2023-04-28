@@ -1,25 +1,37 @@
-import { useSelector } from "react-redux";
 import UnassignedUsers from "./UnassignedUsers";
-import AssignedUsersList from "./AssignedUsersList"; 
+import AssignedUsersList from "./AssignedUsersList";
+import { useState } from "react";
+
+// importing bootstrap from node_modules
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function SuperAdminHome() {
-  const data = useSelector((state) => state.login);
+  const [inputText, setInputText] = useState("");
 
-  console.log("data state from super admin: ", data);
-
-  const token = sessionStorage.getItem("token");
-  console.log("Token from super admin: ", token);
-
-  
+  let inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target?.value.toLowerCase();
+    setInputText(lowerCase);
+  };
 
   return (
     <>
-      <div>
-        <AssignedUsersList />
-        {/* <UnassignedUsers /> */}
+      <div className="input-group d-flex justify-content-center mb-3">
+        <div className="form-outline">
+          <input
+            type="search"
+            id="search-focus"
+            placeholder="Search"
+            className="form-control"
+            aria-label="Search"
+            onChange={inputHandler}
+          />
+        </div>
+        <button id="search-button" type="button" class="btn btn-success">
+          <i class="fas fa-search">Search</i>
+        </button>
       </div>
-
-      {/* <UnassignedUsers /> */}
+      <AssignedUsersList inputText={inputText} />
     </>
   );
 }
